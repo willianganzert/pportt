@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:pptM="http://java.sun.com/jsf/composite/componentes/mensagem"
+                xmlns:pptCT="http://java.sun.com/jsf/composite/componentes/tabela"
+                template="/paginas/template/Template.xhtml">
+
+    <ui:define name="titulo">
+            #{tipoDocumentoCad.sdcTituloTelaCad}
+    </ui:define>
+
+    <ui:define name="conteudo">
+        <h:head>
+            <script type="text/javascript">
+            </script>
+            <ice:outputStyle href="#{facesContext.externalContext.requestContextPath}/css/padrao.css"/>
+        </h:head>
+        <pptCT:DadosCadTabela tabelaConfig="#{tipoDocumentoCad.tabelaConfigPricipalCad}" bean="${tipoDocumentoCad}" tituloCad="#{tipoDocumentoCad.sdcTituloTelaCad}" onSelectRow="rowSelectionListener" />
+        <pptM:popupMensagem bean="${tipoDocumentoCad}"/>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface>
+        <composite:attribute name="idform"
+                             type="java.lang.String"
+                             default="formPopup"
+                             shortDescription='"ID" Formulário'/>
+        <composite:attribute name="bean"
+                             required="true"
+                             shortDescription="Objeto bean"/>
+    </composite:interface>
+    <composite:implementation>
+        <ice:form id="#{cc.attrs.idform}">
+<!--            <ice:panelGrid columns="2" rendered="false">
+                <ice:outputText value="FORM"/>
+                <ice:outputText value="#{cc.attrs.idform}"/>
+                <ice:outputText value="BEAN"/>
+                <ice:outputText value="#{cc.attrs.bean.showPopup}"/>
+                <ice:outputText value="SHOW"/>
+                <ice:outputText value="#{cc.attrs.showPopup}"/>
+                <ice:outputText value="TITULO"/>
+                <ice:outputText value="#{cc.attrs.sdcTitulo}"/>
+                <ice:outputText value="TIPO"/>
+                <ice:outputText value="#{cc.attrs.tipoMensagem}"/>
+                <ice:outputText value="DESCRICAO"/>
+                <ice:outputText value="#{cc.attrs.sdcMensagem}"/>                
+            </ice:panelGrid>-->
+            <ice:panelPopup draggable="false" modal="true" visible="#{cc.attrs.bean.showPopup}" rendered="#{cc.attrs.bean.showPopup}" autoCentre="true">
+                <f:facet name="body">
+                    <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="popupMensagemBody fontePadrao" headerClass="popupMensagemHead" footerClass="popupMensagemFoot" columns="1">
+                        <f:facet name="header">
+                            <ice:panelGroup>
+                                <ice:outputText value="#{cc.attrs.bean.sdcTitulo}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <ice:panelGrid columns="1" styleClass="bordas">
+                            <ice:panelGrid columns="2">
+                                <ice:panelGroup styleClass="imagem_#{cc.attrs.bean.tipoMensagem}"/>
+                                <ice:outputText value="#{cc.attrs.bean.sdcMensagem}"/>
+                            </ice:panelGrid>
+                        </ice:panelGrid>
+                        <f:facet name="footer">
+                            <ice:panelGroup>
+                                <ice:commandButton value="Fechar" action="#{cc.attrs.bean.fechaMensagem}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                    </ice:panelGrid>
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>
+    </composite:implementation>
+</html>

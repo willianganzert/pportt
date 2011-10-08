@@ -1,0 +1,94 @@
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0"
+    metadata-complete="false">
+    <application>
+<!--        <view-handler>com.icesoft.faces.facelets.D2DFaceletViewHandler</view-handler>-->
+
+        <locale-config>
+            <default-locale>pt_BR</default-locale>
+            <!--<supported-locale>en_US</supported-locale>-->
+            <supported-locale>pt_BR</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>br.com.portaltrading.entidades.labels.messages</base-name>
+            <var>mEnt</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>br.com.portalportaltrading.labels.messages</base-name>
+            <var>mLbl</var>
+        </resource-bundle>
+        
+
+<!--        <message-bundle>br.com.forwardti.util.resources.messages</message-bundle>-->
+
+    </application>
+                  
+<!--    
+
+
+
+
+<navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>PccApartamentosCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccApartamentosCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccConstrutoraCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccConstrutoraCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccAgenciaCEFCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccAgenciaCEFCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccSpeCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccSpeCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccCasaCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccCasaCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccComponenteUnidadeCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccComponenteUnidadeCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccEmpreendimentoCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccEmpreendimentoCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccEdificioCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccEdificioCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccIncorporadorCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccIncorporadorCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccIncorporadoresEmpreendimCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccIncorporadoresEmpreendimCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccQuadraCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccQuadraCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccSubEmpreendimentoCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccSubEmpreendimentoCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccTipoUnidadeCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccTipoUnidadeCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PccValoresImovelCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PccValoresImovelCad.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>-->
+</faces-config>
+

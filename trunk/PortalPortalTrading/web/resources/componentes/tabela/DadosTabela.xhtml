@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface>
+        <!--        <composite:attribute name="sidDadosTabela"
+                                     type="java.lang.String"
+                                     default="DadosTabela"
+                                     shortDescription='"ID" Tabela Dados'/>-->
+        <composite:attribute name="bean"
+                             required="true"
+                             shortDescription="Bean"/>
+        <composite:attribute name="onSelectRow"
+                             required="false"
+                             type="java.lang.String"
+                             shortDescription="Metodo a chamar ao selecionar Linha"/>
+        <composite:attribute name="permiteNovo"
+                             required="false"
+                             default="false"
+                             type="java.lang.Boolean"
+                             shortDescription="Permite que chamar funçoes para novo registro."/>
+        <composite:attribute name="novo"
+                             required="false"
+                             default="novo"
+                             type="java.lang.String"
+                             shortDescription="Metodo o qual será chamado para novo registro."/>
+        <composite:attribute name="tabelaConfig"
+                             required="true"
+                             type="br.com.portalportaltrading.componentes.TabelaConfig"
+                             shortDescription="
+                             tabelaConfig.sidDadosTabela
+                             tabelaConfig.qtdPaginas
+                             tabelaConfig.listaRegistros
+                             registroLista[coluna.snmCampoColuna]
+                             tabelaConfig.colunasTabela
+                             coluna.labelColuna
+
+                             tabelaConfig[rowSelectionListener]
+                             tabelaConfig[metodoAlterar]
+                             tabelaConfig[metodoExcluir]
+                             "/>
+    </composite:interface>
+    <composite:implementation>
+        <ice:form>    <!--#{cc.attrs.idform}-->
+<!--            <ice:outputText value="#{cc.attrs.bean}"/>
+            <ice:outputText value="#{cc.attrs.bean[rowSelectionListener]}"/>            
+            <ice:outputText value="#{cc.attrs.bean.rowSelectionListener}"/>-->
+
+            <ice:panelGrid columns="1">
+                <ice:panelGrid columns="2" style="width: 100%;">
+                    <ice:commandButton image="#{facesContext.externalContext.requestContextPath}/images/novo.png" actionListener="${cc.attrs.bean[cc.attrs.novo]}" rendered="#{cc.attrs.permiteNovo}"/>
+                    <ice:dataPaginator for="#{cc.attrs.tabelaConfig.sidDadosTabela}" paginator="true" paginatorMaxPages="#{cc.attrs.tabelaConfig.qtdPaginas}"
+                                       fastStep="2" style="float:left;">
+
+                        <f:facet name="first">
+                            <ice:graphicImage
+                                url="/css/images/arrow-first.gif"
+                                style="border:none;"
+                                title="#{mLbl['label.primeiraPagina']}"/>
+                        </f:facet>
+                        <f:facet name="last">
+                            <ice:graphicImage
+                                styleClass="navagacaoFirst"
+                                url="/css/images/arrow-last.gif"
+                                style="border:none;"
+                                title="#{mLbl['label.ultimaPagina']}"/>
+                        </f:facet>
+                        <f:facet name="fastforward">
+                            <ice:graphicImage
+                                url="/css/images/arrow-ff.gif"
+                                style="border:none;"
+                                title="#{mLbl['label.paginaSeguinte']}"/>
+                        </f:facet>
+                        <f:facet name="fastrewind">
+                            <ice:graphicImage
+                                url="/css/images/arrow-fr.gif"
+                                style="border:none;"
+                                title="#{mLbl['label.paginaAnterior']}"/>
+                        </f:facet>
+                    </ice:dataPaginator>
+                </ice:panelGrid>
+                <ice:dataTable id="#{cc.attrs.tabelaConfig.sidDadosTabela}" value="#{cc.attrs.tabelaConfig.listaRegistros}" var="registroLista" rows="10" headerClass="dadosTabelaHead" styleClass="dadosTabelaClass">
+                    <ice:columns value="#{cc.attrs.tabelaConfig.colunasTabela}" var="coluna">
+                        <ice:rowSelector id="selected" value="false" multiple="false" enhancedMultiple="false" selectionListener="#{cc.attrs.bean[cc.attrs.onSelectRow]}"/>
+                        <f:facet name="header">
+                            <ice:outputText value="#{coluna.labelColuna}"/>                        
+                        </f:facet>
+                        <ice:outputText value="#{empty(coluna.snmCampoColunaPai)?registroLista[coluna.snmCampoColuna]:registroLista[coluna.snmCampoColuna][coluna.snmCampoColunaPai]}"/>                        
+                    </ice:columns>                
+                    <!--                <f:facet name="header">
+                                        <ice:outputText value="Ação"/>
+                                    </f:facet>-->
+                    <!--                <ice:panelGrid columns="3">
+                                        <ice:commandButton image="/css/images/editar.png" action="#{cc.attrs.tabelaConfig[metodoAlterar]}"/>
+                                        <ice:outputText style="width:10px"/>
+                                        <ice:commandButton image="/css/images/delete.png" action="#{cc.attrs.tabelaConfig[metodoExcluir]}"/>
+                                    </ice:panelGrid>-->
+                </ice:dataTable>
+            </ice:panelGrid>
+        </ice:form>
+    </composite:implementation>
+</html>
