@@ -1,0 +1,33 @@
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0"
+    metadata-complete="false">
+    
+    <managed-bean>
+        <managed-bean-name>Home</managed-bean-name>
+        <managed-bean-class>br.com.portalportaltrading.bean.Home</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+<!--    <managed-bean>
+        <managed-bean-name>SistMenu</managed-bean-name>
+        <managed-bean-class>br.com.forwardti.seg.bean.SistMenu</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>SistMenuPerf</managed-bean-name>
+        <managed-bean-class>br.com.forwardti.seg.bean.SistMenuPerf</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>PccApartamentosCad</managed-bean-name>
+        <managed-bean-class>br.com.forwardti.pcc.bean.PccApartamentosCad</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>-->    
+    
+<!--    <lifecycle>
+        <phase-listener>br.com.forwardti.pcc.listener.MenuListener</phase-listener>
+    </lifecycle>-->
+</faces-config>
+

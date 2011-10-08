@@ -1,0 +1,162 @@
+/* body */
+.headCad{
+    height: 30px;
+    width: 100%;
+    background: url(../images/headWood.png) no-repeat top;
+}
+body{
+    width: 99%;
+    height: 97%;
+    background:url(../images/backIndex.png) repeat-x top;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+/* fonts PADRAO*/
+.fontePadrao {
+    font-family: verdana;
+    font-size: 11px;
+    font-weight: bold;
+    color:#888888;
+}
+
+
+/*
+*
+* TEMPLATE 
+*
+*/
+.templateMenuConteudo {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    border: 0px;
+    border-collapse: collapse;
+}
+.templateMenuConteudo tr td{
+    height: 100%;
+}
+.templateHead {
+    width:  100%;
+    height: 90px;
+    border: solid 1px black; 
+}
+.templateMenu {
+    width:  200px;
+    height: 100%;
+    border: solid 1px black; 
+}
+.templateConteudo{
+    border: solid 1px greenyellow;     
+}
+.formMenu {
+    width:100%;
+    overflow: auto;
+    height: 100%;
+}
+
+/*
+*
+* POPUP CAD
+*
+*/
+.bodyPopupCad {
+    background-color: white;
+    border: 1px solid burlywood;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+.headPopupCad {
+    
+    background-color: #FFD39B;
+    border: 1px solid #FFE4C4;
+    padding-bottom: 10px;
+}
+.footPopupCad {
+    padding-top: 10px;    
+}
+.dadosTabelaHead {
+    /*background: url(../images/headWood2.png) repeat-x bottom left;*/
+    background-color: #F5DEB3;
+    
+    overflow: hidden;
+    border-left: solid 1px #EEC591;
+/*    border: solid 1px burlywood;*/
+}
+.dadosTabelaClass {
+    min-width: 200px;
+    background-color: white;
+    border-right: solid 1px #CDC5BF;
+    border-bottom: solid 1px #CDC5BF;
+}
+.dadosTabelaRow {
+    cursor: pointer;
+}
+.dadosTabelaRow:hover{
+    background-color: #CDAA7D;
+}
+
+.buttonsCad{
+    width: 60px;
+    height: 20px;
+    float: right;
+}
+
+.labelCampoCad{
+    width: 100px;
+}
+/*.body{background: transparent url(../images/logo.png) no-repeat scroll right bottom; width: 100%; height: 100%;}*/
+
+/*
+*
+* CSS - POPUPMENSAGEM
+*
+*/
+.popupMensagemHead {
+    background: url(../images/headPopupMensagem.png) repeat-x bottom left;
+    height: 20px;
+}
+.popupMensagemBody {
+    background: white;
+}
+.popupMensagemFoot {
+    background: white;
+}
+.imagem_info{
+    width: 50px;
+    height: 50px;
+    background:url(../images/imagem_info.png) no-repeat top center;
+    margin: 4px;
+}
+.imagem_alerta{
+    width: 50px;
+    height: 50px;
+    background:url(../images/imagem_info.png) no-repeat top center;
+    margin: 4px;
+}
+.imagem_erro{
+    width: 50px;
+    height: 50px;
+    background:url(../images/imagem_info.png) no-repeat top center;
+    margin: 4px;
+}
+
+/*
+*
+* Titulo Grupo
+*
+*/
+.tituloGrupo {
+    height: 14px;
+    border-bottom: 1px solid #FFE4C4;
+}
+.labelGrupo{
+    font-size: 10px;
+    text-align: left;
+    float: left;
+    color: #CDAA7D;
+}

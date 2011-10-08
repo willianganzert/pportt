@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : welcomeICEfaces
+    Created on : Sep 1, 2011, 7:51:01 PM
+    Author     : Willian
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      >
+    <h:head>
+        <title>Portal Trading</title>
+<!--        <ice:outputStyle href="./xmlhttp/css/rime/rime.css"/>-->
+        <h:outputStylesheet library="org.icefaces.component.skins" name="rime.css" />
+    </h:head>
+    <h:body styleClass="ice-skin-rime">
+        <ice:form>
+            <ice:commandLink onclick="window.location.href='./paginas/cadastros/UsuarioCad.jsf';">
+                <ice:outputText value="Usuario"/>
+            </ice:commandLink>        
+        </ice:form>
+    </h:body>
+</html>

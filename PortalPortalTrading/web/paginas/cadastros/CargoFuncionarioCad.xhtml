@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:pptM="http://java.sun.com/jsf/composite/componentes/mensagem"
+                xmlns:pptT="http://java.sun.com/jsf/composite/componentes/tabela"
+                template="/paginas/template/Template.xhtml">
+
+    <ui:define name="titulo">
+            Cadastro de Cargo
+    </ui:define>
+
+    <ui:define name="conteudo">
+        <h:head>
+            <script type="text/javascript">
+            </script>
+            <ice:outputStyle href="#{facesContext.externalContext.requestContextPath}/css/padrao.css"/>
+        </h:head>
+        <ice:form id="idPopupCad">
+            <ice:panelPopup draggable="false" modal="true" visible="#{cargoCad.visivelCargoCad}" rendered="#{cargoCad.visivelCargoCad}" autoCentre="true">
+                <f:facet name="body">
+                    <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="tableBodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
+                        <f:facet name="header">
+                            <ice:panelGroup>
+                                <ice:outputText value="#{cargoCad.sdcTituloTelaCad}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                        <ice:panelGrid columns="2">
+                            <ice:outputText value="#{mLbl['label.Cargo.idCargo']}"></ice:outputText>
+                            <ice:inputText value="#{cargoCad.cargo.idCargo}"></ice:inputText>
+                            <ice:outputText value="#{mLbl['label.Cargo.sdcCargo']}"></ice:outputText>
+                            <ice:inputSecret value="#{cargoCad.cargo.sdcCargo}"></ice:inputSecret>
+                        </ice:panelGrid>
+       
+                        <f:facet name="footer">
+                            <ice:panelGroup>
+                                <ice:commandButton value="#{mLbl['botao.salvar']}" action="#{cargoCad.salvar}"/>
+                                <ice:commandButton value="#{mLbl['botao.excluir']}" action="#{cargoCad.excluir}"/>
+                                <ice:commandButton value="#{mLbl['botao.cancelar']}" action="#{cargoCad.cancelar}"/>
+                            </ice:panelGroup>
+                        </f:facet>
+                    </ice:panelGrid>
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>
+        <pptT:DadosTabela tabelaConfig="#{cargoCad.tabelaConfig}" bean="#{cargoCad}" onSelectRow="rowSelectionListener"/>
+        <pptM:popupMensagem bean="${cargoCad}"/>
+    </ui:define>
+</ui:composition>
