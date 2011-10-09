@@ -26,7 +26,7 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class CaminhaoCad extends ComunTelas implements ImplementsCad{
-    private final Class classePrinciapalCad  = CaminhaoCad.class;
+    private final Class classePrinciapalCad  = Caminhao.class;
     private TabelaConfig tabelaConfigPricipalCad;
     /** Creates a new instance of FornecedorCad */
     public CaminhaoCad() {
