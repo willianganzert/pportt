@@ -4,7 +4,6 @@
  */
 package br.com.portalportaltrading.bean;
 
-import br.com.portalportaltrading.componentes.Campo;
 import br.com.portalportaltrading.componentes.Coluna;
 import br.com.portalportaltrading.componentes.ComunTelas;
 import br.com.portalportaltrading.componentes.TabelaConfig;
