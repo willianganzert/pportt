@@ -1,4 +1,4 @@
-/* body */
+    /* body */
 .headCad{
     height: 30px;
     width: 100%;
@@ -14,7 +14,7 @@ body{
     margin-bottom: 0px;
 }
 
-/* fonts PADRAO*/
+/* FONTE PADRAO*/
 .fontePadrao {
     font-family: verdana;
     font-size: 11px;
@@ -74,36 +74,75 @@ body{
     
     background-color: #FFD39B;
     border: 1px solid #FFE4C4;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    font-size: 15px;    
 }
 .footPopupCad {
     padding-top: 10px;    
 }
+
+
+/*
+*
+*  LISTA DADOS TABELA
+*
+*/
+.dadosTabelaClass {
+    min-width: 300px;
+    background-color: white;
+    border-right: solid 1px #CDC5BF;
+    border-bottom: solid 1px #CDC5BF;
+    color: #444444;
+}
 .dadosTabelaHead {
     /*background: url(../images/headWood2.png) repeat-x bottom left;*/
-    background-color: #F5DEB3;
+    background-color: #FFD39B;
+    /*background-color: #F5DEB3;*/
     
     overflow: hidden;
     border-left: solid 1px #EEC591;
 /*    border: solid 1px burlywood;*/
 }
-.dadosTabelaClass {
-    min-width: 200px;
-    background-color: white;
-    border-right: solid 1px #CDC5BF;
-    border-bottom: solid 1px #CDC5BF;
-}
 .dadosTabelaRow {
-    cursor: pointer;
+    height: 20px;
 }
-.dadosTabelaRow:hover{
-    background-color: #CDAA7D;
+.dadosTabelaRowHover{
+    cursor: pointer;
+    background-color: #E9E9E9;
+    height: 20px;
+}
+.iceRowSelMouseOver {
+    cursor: pointer;
+    background-color: #E9E9E9;
+    height: 20px;
 }
 
 .buttonsCad{
-    width: 60px;
-    height: 20px;
+    width: 45px;
+    height: 40px;
     float: right;
+    color: #777976;    
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.buttonsCad:hover{
+    color: #777976;    
+    border: 1px solid #C6C6C7;
+    cursor: pointer;
+}
+.buttonSave{
+    background: url("../images/save.png") no-repeat scroll 10px 7px whiteSmoke;    
+}
+.buttonExcluir{
+    background: url("../images/lixeira.png") no-repeat scroll 10px 7px whiteSmoke;    
+}
+.buttonCancelar{
+    background: url("../images/back.png") no-repeat scroll 10px 7px whiteSmoke;    
+}
+.buttonNovo{
+    width: 35px;
+    height: 30px;
+    background: url("../images/novo2.png") no-repeat scroll 7px 5px whiteSmoke;    
 }
 
 .labelCampoCad{
