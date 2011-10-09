@@ -6,7 +6,13 @@ package br.com.portalportaltrading.componentes;
 
 import br.com.portalportaltrading.util.UtlMsg;
 import br.com.portaltrading.annotations.AuxCadastroConsulta;
+import br.com.portaltrading.entidades.ComunEntidades;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -51,8 +57,25 @@ public class ComunTelas {
         this.showPopup = false;
         return "";
     }
+    protected List<SelectItem> convertItens(String sdcCampoDesc, List<ComunEntidades> list){
+        Field field;
+        List<SelectItem> items = new ArrayList<SelectItem>();
+        
+        if(list != null && list.size() > 0){ 
+            try {
+                for (ComunEntidades item : list) {                
+                        field = list.get(0).getClass().getField(sdcCampoDesc);
+                        items.add(new SelectItem(item.getId(), field.get(item).toString()));
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(ComunTelas.class.getName()).log(Level.SEVERE, null, ex);
+            }        
+        }
+        
+        return items;
+    }
     
-    public boolean validaDadosClasse(Object object){
+    protected boolean validaDadosClasse(Object object){
         boolean valido = true;
         Field[] fields = object.getClass().getDeclaredFields();
         for (int i = 0; i < fields.length && valido; i++) {

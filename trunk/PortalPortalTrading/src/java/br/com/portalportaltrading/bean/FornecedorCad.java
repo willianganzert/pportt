@@ -59,6 +59,7 @@ public class FornecedorCad extends ComunTelas implements ImplementsCad{
     public void rowSelectionListener(RowSelectorEvent event) {
         this.tabelaConfigPricipalCad.setSelected(((Fornecedor) this.tabelaConfigPricipalCad.getListaRegistros().get(event.getRow())).clone());
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
+        this.tabelaConfigPricipalCad.setNovoReg(false);  
     }
 
     public String novo() {
@@ -101,8 +102,7 @@ public class FornecedorCad extends ComunTelas implements ImplementsCad{
     }
 
     public String cancelar() {
-        this.tabelaConfigPricipalCad.setVisablePopupCad(false);       
-        this.tabelaConfigPricipalCad.setNovoReg(false);       
+        this.tabelaConfigPricipalCad.setVisablePopupCad(false);             
         return "";
     }
     
