@@ -5,6 +5,8 @@
 package br.com.portaltrading.entidades;
 
 import java.lang.reflect.Field;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,5 +39,24 @@ public class ComunEntidades implements Cloneable {
         } catch (CloneNotSupportedException e) {
             return null;
         }
+    }
+    public long getId()
+    {
+        long id = 0;
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            if(field.getAnnotation(javax.persistence.Id.class) != null){
+                field.setAccessible(true);
+                try {
+                    id = field.getLong(this);
+                } catch (IllegalArgumentException ex) {
+                    Logger.getLogger(ComunEntidades.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(ComunEntidades.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            }
+        }
+        return id;
     }
 }

@@ -41,7 +41,7 @@ public class RepRodoviario extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_REPRODOVIARIO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idreprodoviario")
-    private Long idRepRodoviario;
+    private long idRepRodoviario;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "repRodoviario", fetch = FetchType.EAGER)
     private List<Caminhao> caminhoes;
@@ -58,7 +58,7 @@ public class RepRodoviario extends ComunEntidades implements Serializable {
         this.idRepRodoviario = idRepRodoviario;
     }
 
-    public Long getIdRepRodoviario() {
+    public long getIdRepRodoviario() {
         return idRepRodoviario;
     }
 
@@ -81,26 +81,6 @@ public class RepRodoviario extends ComunEntidades implements Serializable {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idRepRodoviario != null ? idRepRodoviario.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof RepRodoviario)) {
-            return false;
-        }
-        RepRodoviario other = (RepRodoviario) object;
-        if ((this.idRepRodoviario == null && other.idRepRodoviario != null) || (this.idRepRodoviario != null && !this.idRepRodoviario.equals(other.idRepRodoviario))) {
-            return false;
-        }
-        return true;
     }
 
     @Override
