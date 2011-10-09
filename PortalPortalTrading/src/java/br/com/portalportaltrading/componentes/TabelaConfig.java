@@ -21,6 +21,7 @@ public class TabelaConfig {
     private Object selected;
     private Class classeTabela;
     private boolean visablePopupCad;
+    private boolean novoReg;
     
     public TabelaConfig(String sidDadosTabela) {
         this.sidDadosTabela = sidDadosTabela;
@@ -112,6 +113,14 @@ public class TabelaConfig {
 
     public void setVisablePopupCad(boolean visablePopupCad) {
         this.visablePopupCad = visablePopupCad;
+    }
+
+    public boolean isNovoReg() {
+        return novoReg;
+    }
+
+    public void setNovoReg(boolean novoReg) {
+        this.novoReg = novoReg;
     }
     
     

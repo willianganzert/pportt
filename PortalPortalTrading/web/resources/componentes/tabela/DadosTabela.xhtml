@@ -49,7 +49,8 @@
 
             <ice:panelGrid columns="1">
                 <ice:panelGrid columns="2" style="width: 100%;">
-                    <ice:commandButton image="#{facesContext.externalContext.requestContextPath}/images/novo.png" actionListener="${cc.attrs.bean[cc.attrs.novo]}" rendered="#{cc.attrs.permiteNovo}"/>
+<!--                    <ice:commandButton image="#{facesContext.externalContext.requestContextPath}/images/novo.png" actionListener="${cc.attrs.bean[cc.attrs.novo]}" rendered="#{cc.attrs.permiteNovo}"/>-->
+                    <ice:commandButton actionListener="${cc.attrs.bean[cc.attrs.novo]}" rendered="#{cc.attrs.permiteNovo}" styleClass="buttonsCad buttonNovo" title="#{mLbl['botao.novo']}"/>
                     <ice:dataPaginator for="#{cc.attrs.tabelaConfig.sidDadosTabela}" paginator="true" paginatorMaxPages="#{cc.attrs.tabelaConfig.qtdPaginas}"
                                        fastStep="2" style="float:left;">
 
@@ -80,9 +81,9 @@
                         </f:facet>
                     </ice:dataPaginator>
                 </ice:panelGrid>
-                <ice:dataTable id="#{cc.attrs.tabelaConfig.sidDadosTabela}" value="#{cc.attrs.tabelaConfig.listaRegistros}" var="registroLista" rows="10" headerClass="dadosTabelaHead" styleClass="dadosTabelaClass">
+                <ice:dataTable id="#{cc.attrs.tabelaConfig.sidDadosTabela}" value="#{cc.attrs.tabelaConfig.listaRegistros}" var="registroLista" rows="10" headerClass="dadosTabelaHead" styleClass="dadosTabelaClass" rowClasses="dadosTabelaRow" >
                     <ice:columns value="#{cc.attrs.tabelaConfig.colunasTabela}" var="coluna">
-                        <ice:rowSelector id="selected" value="false" multiple="false" enhancedMultiple="false" selectionListener="#{cc.attrs.bean[cc.attrs.onSelectRow]}"/>
+                        <ice:rowSelector id="selected" value="false" multiple="false" enhancedMultiple="false" selectionListener="#{cc.attrs.bean[cc.attrs.onSelectRow]}" selectedMouseOverClass="dadosTabelaRowHover"/>
                         <f:facet name="header">
                             <ice:outputText value="#{coluna.labelColuna}"/>                        
                         </f:facet>

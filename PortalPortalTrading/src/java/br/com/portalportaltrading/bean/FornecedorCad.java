@@ -66,6 +66,7 @@ public class FornecedorCad extends ComunTelas implements ImplementsCad{
         fornecedor.setEmpresa(new Empresa());
         this.tabelaConfigPricipalCad.setSelected(fornecedor);
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
+        this.tabelaConfigPricipalCad.setNovoReg(true);
         return "";
     }
 
@@ -100,7 +101,8 @@ public class FornecedorCad extends ComunTelas implements ImplementsCad{
     }
 
     public String cancelar() {
-        this.tabelaConfigPricipalCad.setVisablePopupCad(false);        
+        this.tabelaConfigPricipalCad.setVisablePopupCad(false);       
+        this.tabelaConfigPricipalCad.setNovoReg(false);       
         return "";
     }
     

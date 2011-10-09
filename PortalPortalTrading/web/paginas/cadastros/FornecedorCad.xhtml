@@ -30,6 +30,11 @@
                                 <ice:outputText value="#{fornecedorCad.sdcTituloTelaCad}"/>
                             </ice:panelGroup>
                         </f:facet>
+                        <ice:panelGrid columns="4" style="padding-bottom: 10px;padding-top: 5px;">
+                            <ice:commandButton actionListener="#{fornecedorCad.salvar}" styleClass="buttonsCad buttonSave" title="#{mLbl['botao.salvar']}"/>
+                            <ice:commandButton actionListener="#{fornecedorCad.excluir}" styleClass="buttonsCad buttonExcluir" rendered="#{!fornecedorCad.tabelaConfigPricipalCad.novoReg}" title="#{mLbl['botao.excluir']}"/>
+                            <ice:commandButton actionListener="#{fornecedorCad.cancelar}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
+                        </ice:panelGrid>
                         <layout:tituloGrupo label="#{mLbl['label.FornecedorCad.dados']}"/>
                         <ice:panelGrid columns="2" columnClasses="labelCampoCad">
                             <ice:outputText value="${mEnt['label.Empresa.short.scdCnpj']}"/>
@@ -61,13 +66,13 @@
                             <ice:inputText value="#{fornecedorCad.tabelaConfigPricipalCad.selected['empresa']['sdcFone']}" maxlength="15" style="width: 110px;"/>
                         </ice:panelGrid>
 
-                        <f:facet name="footer">
+<!--                        <f:facet name="footer">
                             <ice:panelGroup>
-                                <ice:commandButton value="#{mLbl['botao.salvar']}" actionListener="#{fornecedorCad.salvar}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonWood1.png"/>
-                                <ice:commandButton value="#{mLbl['botao.excluir']}" actionListener="#{fornecedorCad.excluir}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonWood2.png"/>
-                                <ice:commandButton value="#{mLbl['botao.cancelar']}" actionListener="#{fornecedorCad.cancelar}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonWood3.png"/>
+                                <ice:commandButton value="#{mLbl['botao.cancelar']}" actionListener="#{fornecedorCad.cancelar}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonFecharWood.png"/>
+                                <ice:commandButton value="#{mLbl['botao.excluir']}" actionListener="#{fornecedorCad.excluir}" visible="#{!fornecedorCad.tabelaConfigPricipalCad.novoReg}" rendered="#{!fornecedorCad.tabelaConfigPricipalCad.novoReg}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonExcluirWood.png"/>
+                                <ice:commandButton value="#{mLbl['botao.salvar']}" actionListener="#{fornecedorCad.salvar}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonSalvarWood.png"/>
                             </ice:panelGroup>
-                        </f:facet>
+                        </f:facet>-->
                     </ice:panelGrid>
                 </f:facet>
             </ice:panelPopup>
