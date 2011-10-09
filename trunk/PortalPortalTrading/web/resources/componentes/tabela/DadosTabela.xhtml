@@ -46,59 +46,60 @@
 <!--            <ice:outputText value="#{cc.attrs.bean}"/>
             <ice:outputText value="#{cc.attrs.bean[rowSelectionListener]}"/>            
             <ice:outputText value="#{cc.attrs.bean.rowSelectionListener}"/>-->
+            <center>
+                <ice:panelGrid columns="1">
+                    <ice:panelGrid columns="2" style="width: 100%">
+    <!--                    <ice:commandButton image="#{facesContext.externalContext.requestContextPath}/images/novo.png" actionListener="${cc.attrs.bean[cc.attrs.novo]}" rendered="#{cc.attrs.permiteNovo}"/>-->
+                        <ice:commandButton actionListener="${cc.attrs.bean[cc.attrs.novo]}" rendered="#{cc.attrs.permiteNovo}" styleClass="buttonsCad buttonNovo" title="#{mLbl['botao.novo']}"/>
+                        <ice:dataPaginator for="#{cc.attrs.tabelaConfig.sidDadosTabela}" paginator="true" paginatorMaxPages="#{cc.attrs.tabelaConfig.qtdPaginas}"
+                                           fastStep="2" style="float:right;">
 
-            <ice:panelGrid columns="1">
-                <ice:panelGrid columns="2" style="width: 100%;">
-<!--                    <ice:commandButton image="#{facesContext.externalContext.requestContextPath}/images/novo.png" actionListener="${cc.attrs.bean[cc.attrs.novo]}" rendered="#{cc.attrs.permiteNovo}"/>-->
-                    <ice:commandButton actionListener="${cc.attrs.bean[cc.attrs.novo]}" rendered="#{cc.attrs.permiteNovo}" styleClass="buttonsCad buttonNovo" title="#{mLbl['botao.novo']}"/>
-                    <ice:dataPaginator for="#{cc.attrs.tabelaConfig.sidDadosTabela}" paginator="true" paginatorMaxPages="#{cc.attrs.tabelaConfig.qtdPaginas}"
-                                       fastStep="2" style="float:left;">
-
-                        <f:facet name="first">
-                            <ice:graphicImage
-                                url="/css/images/arrow-first.gif"
-                                style="border:none;"
-                                title="#{mLbl['label.primeiraPagina']}"/>
-                        </f:facet>
-                        <f:facet name="last">
-                            <ice:graphicImage
-                                styleClass="navagacaoFirst"
-                                url="/css/images/arrow-last.gif"
-                                style="border:none;"
-                                title="#{mLbl['label.ultimaPagina']}"/>
-                        </f:facet>
-                        <f:facet name="fastforward">
-                            <ice:graphicImage
-                                url="/css/images/arrow-ff.gif"
-                                style="border:none;"
-                                title="#{mLbl['label.paginaSeguinte']}"/>
-                        </f:facet>
-                        <f:facet name="fastrewind">
-                            <ice:graphicImage
-                                url="/css/images/arrow-fr.gif"
-                                style="border:none;"
-                                title="#{mLbl['label.paginaAnterior']}"/>
-                        </f:facet>
-                    </ice:dataPaginator>
+                            <f:facet name="first">
+                                <ice:graphicImage
+                                    url="/css/images/arrow-first.gif"
+                                    style="border:none;"
+                                    title="#{mLbl['label.primeiraPagina']}"/>
+                            </f:facet>
+                            <f:facet name="last">
+                                <ice:graphicImage
+                                    styleClass="navagacaoFirst"
+                                    url="/css/images/arrow-last.gif"
+                                    style="border:none;"
+                                    title="#{mLbl['label.ultimaPagina']}"/>
+                            </f:facet>
+                            <f:facet name="fastforward">
+                                <ice:graphicImage
+                                    url="/css/images/arrow-ff.gif"
+                                    style="border:none;"
+                                    title="#{mLbl['label.paginaSeguinte']}"/>
+                            </f:facet>
+                            <f:facet name="fastrewind">
+                                <ice:graphicImage
+                                    url="/css/images/arrow-fr.gif"
+                                    style="border:none;"
+                                    title="#{mLbl['label.paginaAnterior']}"/>
+                            </f:facet>
+                        </ice:dataPaginator>
+                    </ice:panelGrid>
+                    <ice:dataTable id="#{cc.attrs.tabelaConfig.sidDadosTabela}" value="#{cc.attrs.tabelaConfig.listaRegistros}" var="registroLista" rows="10" headerClass="dadosTabelaHead" styleClass="dadosTabelaClass" rowClasses="dadosTabelaRow" >
+                        <ice:columns value="#{cc.attrs.tabelaConfig.colunasTabela}" var="coluna">
+                            <ice:rowSelector id="selected" value="false" multiple="false" enhancedMultiple="false" selectionListener="#{cc.attrs.bean[cc.attrs.onSelectRow]}" selectedMouseOverClass="dadosTabelaRowHover"/>
+                            <f:facet name="header">
+                                <ice:outputText value="#{coluna.labelColuna}"/>                        
+                            </f:facet>
+                            <ice:outputText value="#{empty(coluna.snmCampoColunaPai)?registroLista[coluna.snmCampoColuna]:registroLista[coluna.snmCampoColuna][coluna.snmCampoColunaPai]}"/>                        
+                        </ice:columns>                
+                        <!--                <f:facet name="header">
+                                            <ice:outputText value="Ação"/>
+                                        </f:facet>-->
+                        <!--                <ice:panelGrid columns="3">
+                                            <ice:commandButton image="/css/images/editar.png" action="#{cc.attrs.tabelaConfig[metodoAlterar]}"/>
+                                            <ice:outputText style="width:10px"/>
+                                            <ice:commandButton image="/css/images/delete.png" action="#{cc.attrs.tabelaConfig[metodoExcluir]}"/>
+                                        </ice:panelGrid>-->
+                    </ice:dataTable>
                 </ice:panelGrid>
-                <ice:dataTable id="#{cc.attrs.tabelaConfig.sidDadosTabela}" value="#{cc.attrs.tabelaConfig.listaRegistros}" var="registroLista" rows="10" headerClass="dadosTabelaHead" styleClass="dadosTabelaClass" rowClasses="dadosTabelaRow" >
-                    <ice:columns value="#{cc.attrs.tabelaConfig.colunasTabela}" var="coluna">
-                        <ice:rowSelector id="selected" value="false" multiple="false" enhancedMultiple="false" selectionListener="#{cc.attrs.bean[cc.attrs.onSelectRow]}" selectedMouseOverClass="dadosTabelaRowHover"/>
-                        <f:facet name="header">
-                            <ice:outputText value="#{coluna.labelColuna}"/>                        
-                        </f:facet>
-                        <ice:outputText value="#{empty(coluna.snmCampoColunaPai)?registroLista[coluna.snmCampoColuna]:registroLista[coluna.snmCampoColuna][coluna.snmCampoColunaPai]}"/>                        
-                    </ice:columns>                
-                    <!--                <f:facet name="header">
-                                        <ice:outputText value="Ação"/>
-                                    </f:facet>-->
-                    <!--                <ice:panelGrid columns="3">
-                                        <ice:commandButton image="/css/images/editar.png" action="#{cc.attrs.tabelaConfig[metodoAlterar]}"/>
-                                        <ice:outputText style="width:10px"/>
-                                        <ice:commandButton image="/css/images/delete.png" action="#{cc.attrs.tabelaConfig[metodoExcluir]}"/>
-                                    </ice:panelGrid>-->
-                </ice:dataTable>
-            </ice:panelGrid>
+            </center>
         </ice:form>
     </composite:implementation>
 </html>
