@@ -10,6 +10,7 @@ import br.com.portalportaltrading.componentes.TabelaConfig;
 import br.com.portalportaltrading.util.UtlMsg;
 import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import br.com.portaltrading.entidades.Caminhao;
+import br.com.portaltrading.entidades.RepRodoviario;
 import br.com.portaltrading.jpa.JpaAllEntities;
 import com.icesoft.faces.component.ext.RowSelectorEvent;
 import java.lang.reflect.Field;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -27,10 +29,13 @@ import javax.faces.bean.ViewScoped;
 public class CaminhaoCad extends ComunTelas implements ImplementsCad{
     private final Class classePrinciapalCad  = Caminhao.class;
     private TabelaConfig tabelaConfigPricipalCad;
+    private List<SelectItem> repItemsRodoviarios;
+    private List<RepRodoviario> repRodoviarios;
     /** Creates a new instance of FornecedorCad */
     public CaminhaoCad() {
         this.sdcTituloTelaCad = UtlMsg.msg("tituloTabela.Caminhao");
-        
+        this.repRodoviarios         = JpaAllEntities.listAll(RepRodoviario.class);
+        this.repItemsRodoviarios    = this.convertItensRepresentante(this.repRodoviarios);
         this.tabelaConfigPricipalCad = new TabelaConfig(classePrinciapalCad);
         
         List<Coluna> colunas    = new ArrayList<Coluna>();
@@ -56,11 +61,13 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
     public void rowSelectionListener(RowSelectorEvent event) {
         this.tabelaConfigPricipalCad.setSelected(((Caminhao) this.tabelaConfigPricipalCad.getListaRegistros().get(event.getRow())).clone());
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
+        this.tabelaConfigPricipalCad.setNovoReg(false);
     }
 
     public String novo() {
         this.tabelaConfigPricipalCad.setSelected(new Caminhao());
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
+        this.tabelaConfigPricipalCad.setNovoReg(true);
         return "";
     }
 
@@ -95,7 +102,28 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
         this.tabelaConfigPricipalCad.setVisablePopupCad(false);        
         return "";
     }
-    
+    public void changeRepRodoviario()
+    {
+        for (int i = 0; i < repItemsRodoviarios.size(); i++) {
+            SelectItem selectItem = repItemsRodoviarios.get(i);        
+            for (int j = 0; j < repRodoviarios.size(); j++) {
+                RepRodoviario repRodoviario = repRodoviarios.get(j);
+                if(repRodoviario.getIdRepRodoviario() == ((Long)selectItem.getValue()).longValue()){
+                    ((Caminhao)this.tabelaConfigPricipalCad.getSelected()).setRepRodoviario(repRodoviario);
+                    return;
+                }
+            }
+        }        
+    }
+    private List<SelectItem> convertItensRepresentante(List<RepRodoviario> repRodoviarios){
+        List<SelectItem> items = new ArrayList<SelectItem>();
+        if(repRodoviarios != null && repRodoviarios.size() > 0){
+            for (RepRodoviario repRodoviario : repRodoviarios) {
+                items.add(new SelectItem(repRodoviario.getIdRepRodoviario(),repRodoviario.getEmpresa().getSdcRazaoSocial()));                
+            }
+        }
+        return items;
+    }
     /*
      * 
      * GetSet
