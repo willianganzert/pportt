@@ -22,7 +22,7 @@
         <pptCT:DadosTabela tabelaConfig="#{fornecedorCad.tabelaConfigPricipalCad}" bean="${fornecedorCad}" onSelectRow="rowSelectionListener" permiteNovo="true"/>
         <ice:form id="FornecedorCad">
             <ice:panelPopup draggable="false" modal="true" autoCentre="true" visible="#{fornecedorCad.tabelaConfigPricipalCad.visablePopupCad}" rendered="#{fornecedorCad.tabelaConfigPricipalCad.visablePopupCad}">
-                <f:facet name="body">
+                <f:facet name="body" id="facetBody">
                     <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="bodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
 
                         <f:facet name="header">
@@ -30,9 +30,10 @@
                                 <ice:outputText value="#{fornecedorCad.sdcTituloTelaCad}"/>
                             </ice:panelGroup>
                         </f:facet>
-                        <ice:panelGrid columns="4" style="padding-bottom: 10px;padding-top: 5px;">
+                        <ice:panelGrid columns="4" style="padding-bottom: 10px;padding-top: 5px; width: 100%" columnClasses="nothing,nothing,width100,nothing">
                             <ice:commandButton actionListener="#{fornecedorCad.salvar}" styleClass="buttonsCad buttonSave" title="#{mLbl['botao.salvar']}"/>
                             <ice:commandButton actionListener="#{fornecedorCad.excluir}" styleClass="buttonsCad buttonExcluir" rendered="#{!fornecedorCad.tabelaConfigPricipalCad.novoReg}" title="#{mLbl['botao.excluir']}"/>
+                            <ice:panelGroup/>
                             <ice:commandButton actionListener="#{fornecedorCad.cancelar}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
                         </ice:panelGrid>
                         <layout:tituloGrupo label="#{mLbl['label.FornecedorCad.dados']}"/>
