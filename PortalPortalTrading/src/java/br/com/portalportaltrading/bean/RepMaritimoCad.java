@@ -10,6 +10,7 @@ import br.com.portalportaltrading.componentes.ComunTelas;
 import br.com.portalportaltrading.componentes.TabelaConfig;
 import br.com.portalportaltrading.util.UtlMsg;
 import br.com.portaltrading.annotations.AuxCadastroConsulta;
+import br.com.portaltrading.entidades.Empresa;
 import br.com.portaltrading.entidades.RepMaritimo;
 import br.com.portaltrading.jpa.JpaAllEntities;
 import com.icesoft.faces.component.ext.RowSelectorEvent;
@@ -21,7 +22,7 @@ import javax.faces.bean.ViewScoped;
 
 /**
  *
- * @author Willian
+ * @author Adam
  */
 @ManagedBean
 @ViewScoped
@@ -48,6 +49,7 @@ public class RepMaritimoCad extends ComunTelas implements ImplementsCad{
                         field.getName()), field.getName()));                
             }
         }
+        colunas.add(new Coluna(UtlMsg.msg("label.Empresa.short.sdcRazaoSocial"), "empresa","sdcRazaoSocial"));
         
         this.tabelaConfigPricipalCad.setColunasTabela(colunas);
         this.tabelaConfigPricipalCad.setQtdPaginas(new Integer(listRegPrincial.size()/10));
@@ -60,7 +62,9 @@ public class RepMaritimoCad extends ComunTelas implements ImplementsCad{
     }
 
     public String novo() {
-        this.tabelaConfigPricipalCad.setSelected(new RepMaritimo());
+        RepMaritimo repMaritimo = new RepMaritimo();
+        repMaritimo.setEmpresa(new Empresa());
+        this.tabelaConfigPricipalCad.setSelected(repMaritimo);
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
         return "";
     }
@@ -68,7 +72,10 @@ public class RepMaritimoCad extends ComunTelas implements ImplementsCad{
     public String salvar() {
         if(this.validaDadosClasse(this.tabelaConfigPricipalCad.getSelected()))
         {
-            JpaAllEntities.insertOrUpdate((RepMaritimo)this.tabelaConfigPricipalCad.getSelected());
+            ((RepMaritimo)this.tabelaConfigPricipalCad.getSelected()).getEmpresa().setNidTipo(1);//TipoFornecedor
+            ((RepMaritimo)this.tabelaConfigPricipalCad.getSelected()).setNidAtivo(2);
+            JpaAllEntities.insertOrUpdate(((RepMaritimo)this.tabelaConfigPricipalCad.getSelected()).getEmpresa(),
+                    (RepMaritimo)this.tabelaConfigPricipalCad.getSelected());
             this.tabelaConfigPricipalCad.setVisablePopupCad(false);
             
             List listRegPrincial = JpaAllEntities.listAll(classePrinciapalCad);
@@ -83,7 +90,7 @@ public class RepMaritimoCad extends ComunTelas implements ImplementsCad{
     }
 
     public String excluir() {
-        JpaAllEntities.delete((RepMaritimo)this.tabelaConfigPricipalCad.getSelected());
+        JpaAllEntities.delete(((RepMaritimo)this.tabelaConfigPricipalCad.getSelected()).getEmpresa(),(RepMaritimo)this.tabelaConfigPricipalCad.getSelected());
         this.tabelaConfigPricipalCad.setVisablePopupCad(false);
         
         List listRegPrincial = JpaAllEntities.listAll(classePrinciapalCad);
