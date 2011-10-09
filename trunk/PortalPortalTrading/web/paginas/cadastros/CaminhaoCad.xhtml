@@ -29,9 +29,17 @@
                                 <ice:outputText value="#{caminhaoCad.sdcTituloTelaCad}"/>
                             </ice:panelGroup>
                         </f:facet>
+                        <ice:panelGrid columns="4" styleClass="toolbarCad" columnClasses="nothing,nothing,width100,nothing">
+                            <ice:commandButton actionListener="#{caminhaoCad.salvar}" styleClass="buttonsCad buttonSave" title="#{mLbl['botao.salvar']}"/>
+                            <ice:commandButton actionListener="#{caminhaoCad.excluir}" styleClass="buttonsCad buttonExcluir" rendered="#{!caminhaoCad.tabelaConfigPricipalCad.novoReg}" title="#{mLbl['botao.excluir']}"/>
+                            <ice:panelGroup/>
+                            <ice:commandButton actionListener="#{caminhaoCad.cancelar}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
+                        </ice:panelGrid>
                         <ice:panelGrid columns="2">
-                            <ice:outputText value="#{mEnt['label.Caminhao.idCaminhao']}"></ice:outputText>
-                            <ice:inputText value="#{caminhaoCad.tabelaConfigPricipalCad.selected.idCaminhao}"></ice:inputText>
+                            <ice:outputText value="#{mEnt['label.Caminhao.sdcModelo']}"></ice:outputText>
+                            <ice:selectOneMenu valueChangeListener="#{caminhaoCad.changeRepRodoviario}">
+                                <f:selectItems value="#{caminhaoCad.repItemsRodoviarios}"/>
+                            </ice:selectOneMenu>
                             <ice:outputText value="#{mEnt['label.Caminhao.sdcModelo']}"></ice:outputText>
                             <ice:inputSecret value="#{caminhaoCad.tabelaConfigPricipalCad.selected.sdcModelo}"></ice:inputSecret>
                             <ice:outputText value="#{mEnt['label.Caminhao.nAno']}"></ice:outputText>
