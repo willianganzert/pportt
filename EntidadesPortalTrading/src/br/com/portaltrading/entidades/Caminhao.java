@@ -55,7 +55,7 @@ public class Caminhao extends ComunEntidades implements Serializable{
 //    @Column(name = "ndtAno")
     @Column()
     @AuxCadastroConsulta(listaConsulta=false, tipoDado=AuxCadastroConsulta.TIPO_DADO.POSITIVO)
-    private int ndtAno;
+    private int nAno;
     
     @Basic(optional = false)
 //    @Column(name = "scdPlaca")
@@ -89,7 +89,7 @@ public class Caminhao extends ComunEntidades implements Serializable{
     public Caminhao(long idCaminhao, String sdcModelo, int ndtAno, String scdPlaca) {
         this.idCaminhao = idCaminhao;
         this.sdcModelo = sdcModelo;
-        this.ndtAno = ndtAno;
+        this.nAno = nAno;
         this.scdPlaca = scdPlaca;
     }
 
@@ -109,12 +109,12 @@ public class Caminhao extends ComunEntidades implements Serializable{
         this.sdcModelo = sdcModelo;
     }
 
-    public int getNdtAno() {
-        return ndtAno;
+    public int getnAno() {
+        return nAno;
     }
 
-    public void setNdtAno(int ndtAno) {
-        this.ndtAno = ndtAno;
+    public void setnAno(int nAno) {
+        this.nAno = nAno;
     }
 
     public String getScdPlaca() {
