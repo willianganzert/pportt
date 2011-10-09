@@ -5,11 +5,12 @@
                 xmlns:ice="http://www.icesoft.com/icefaces/component"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:pptM="http://java.sun.com/jsf/composite/componentes/mensagem"
-                xmlns:pptT="http://java.sun.com/jsf/composite/componentes/tabela"
+                xmlns:pptCT="http://java.sun.com/jsf/composite/componentes/tabela"
+                xmlns:layout="http://java.sun.com/jsf/composite/componentes/layout"
                 template="/paginas/template/Template.xhtml">
 
     <ui:define name="titulo">
-            Cadastro de Despachante
+        #{despachanteCad.sdcTituloTelaCad}
     </ui:define>
 
     <ui:define name="conteudo">
@@ -18,34 +19,34 @@
             </script>
             <ice:outputStyle href="#{facesContext.externalContext.requestContextPath}/css/padrao.css"/>
         </h:head>
-        <ice:form id="idPopupCad">
-            <ice:panelPopup draggable="false" modal="true" visible="#{despachanteCad.visivelDespachanteCad}" rendered="#{despachanteCad.visivelDespachanteCad}" autoCentre="true">
+        <pptCT:DadosTabela tabelaConfig="#{despachanteCad.tabelaConfigPricipalCad}" bean="${despachanteCad}" onSelectRow="rowSelectionListener" permiteNovo="true"/>
+        <ice:form id="DespachanteCad">
+            <ice:panelPopup draggable="false" modal="true" autoCentre="true" visible="#{despachanteCad.tabelaConfigPricipalCad.visablePopupCad}" rendered="#{despachanteCad.tabelaConfigPricipalCad.visablePopupCad}">
                 <f:facet name="body">
-                    <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="tableBodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
+                    <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="bodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
+
                         <f:facet name="header">
                             <ice:panelGroup>
                                 <ice:outputText value="#{despachanteCad.sdcTituloTelaCad}"/>
                             </ice:panelGroup>
                         </f:facet>
-                        <ice:panelGrid columns="2">
-                            <ice:outputText value="#{mLbl['label.Despachante.idDespachante']}"></ice:outputText>
-                            <ice:inputText value="#{despachanteCad.despachante.idDespachante}"></ice:inputText>
-                            <ice:outputText value="#{mLbl['label.Despachante.snmRepDespachante']}"></ice:outputText>
-                            <ice:inputText value="#{despachanteCad.despachante.snmRepDespachante}"></ice:inputText>
-                        </ice:panelGrid>
-       
+                        <layout:tituloGrupo label="#{mLbl['label.DespachanteCad.dados']}"/>
+                        <ice:panelGrid columns="2" columnClasses="labelCampoCad">
+                            <ice:outputText value="${mEnt['label.Despachante.short.snmRepDespachante']}"/>
+                            <ice:inputText value="#{despachanteCad.tabelaConfigPricipalCad.selected['despachante']['snmRepDespachante']}" maxlength="15" style="width: 110px;"/>
+
+                        </ice:panelGrid>                                                 
                         <f:facet name="footer">
                             <ice:panelGroup>
-                                <ice:commandButton value="#{mLbl['botao.salvar']}" action="#{despachanteCad.salvar}"/>
-                                <ice:commandButton value="#{mLbl['botao.excluir']}" action="#{despachanteCad.excluir}"/>
-                                <ice:commandButton value="#{mLbl['botao.cancelar']}" action="#{despachanteCad.cancelar}"/>
+                                <ice:commandButton value="#{mLbl['botao.salvar']}" actionListener="#{despachanteCad.salvar}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonWood1.png"/>
+                                <ice:commandButton value="#{mLbl['botao.excluir']}" actionListener="#{despachanteCad.excluir}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonWood2.png"/>
+                                <ice:commandButton value="#{mLbl['botao.cancelar']}" actionListener="#{despachanteCad.cancelar}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonWood3.png"/>
                             </ice:panelGroup>
                         </f:facet>
                     </ice:panelGrid>
                 </f:facet>
             </ice:panelPopup>
         </ice:form>
-        <pptT:DadosTabela tabelaConfig="#{despachanteCad.tabelaConfig}" bean="#{despachanteCad}" onSelectRow="rowSelectionListener"/>
         <pptM:popupMensagem bean="${despachanteCad}"/>
     </ui:define>
 </ui:composition>
