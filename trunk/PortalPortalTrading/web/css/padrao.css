@@ -62,6 +62,12 @@ body{
 * POPUP CAD
 *
 */
+.toolbarCad {
+/*    padding-bottom: 5px;
+    padding-top: 5px;*/
+    width: 100%;
+    border: 1px solid cornsilk;
+}
 .bodyPopupCad {
     background-color: white;
     border: 1px solid burlywood;
