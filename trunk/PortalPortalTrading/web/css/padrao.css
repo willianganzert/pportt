@@ -71,7 +71,7 @@ body{
     padding-bottom: 5px;
 }
 .headPopupCad {
-    
+    color: #444444;
     background-color: #FFD39B;
     border: 1px solid #FFE4C4;
     padding-bottom: 5px;
@@ -124,6 +124,7 @@ body{
     color: #777976;    
     border: 1px solid rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    float: left;
 }
 .buttonsCad:hover{
     color: #777976;    
@@ -137,7 +138,8 @@ body{
     background: url("../images/lixeira.png") no-repeat scroll 10px 7px whiteSmoke;    
 }
 .buttonCancelar{
-    background: url("../images/back.png") no-repeat scroll 10px 7px whiteSmoke;    
+    background: url("../images/back.png") no-repeat scroll 10px 7px whiteSmoke;
+    float: right;
 }
 .buttonNovo{
     width: 35px;
@@ -199,3 +201,8 @@ body{
     float: left;
     color: #CDAA7D;
 }
+
+.width100{
+    width: 100%;
+}
+.nothing{}
