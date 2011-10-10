@@ -22,7 +22,7 @@
         <pptCT:DadosTabela tabelaConfig="#{repMaritimoCad.tabelaConfigPricipalCad}" bean="${repMaritimoCad}" onSelectRow="rowSelectionListener" permiteNovo="true"/>
         <ice:form id="RepMaritimoCad">
             <ice:panelPopup draggable="false" modal="true" autoCentre="true" visible="#{repMaritimoCad.tabelaConfigPricipalCad.visablePopupCad}" rendered="#{repMaritimoCad.tabelaConfigPricipalCad.visablePopupCad}">
-                <f:facet name="body">
+                <f:facet name="body" id="facetBody">
                     <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="bodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
 
                         <f:facet name="header">
@@ -30,9 +30,18 @@
                                 <ice:outputText value="#{repMaritimoCad.sdcTituloTelaCad}"/>
                             </ice:panelGroup>
                         </f:facet>
+                        <ice:panelGrid columns="4" styleClass="toolbarCad" columnClasses="nothing,nothing,width100,nothing">
+                            <ice:commandButton actionListener="#{repMaritimoCad.salvar}" styleClass="buttonsCad buttonSave" title="#{mLbl['botao.salvar']}"/>
+                            <ice:commandButton actionListener="#{repMaritimoCad.excluir}" styleClass="buttonsCad buttonExcluir" rendered="#{!repMaritimoCad.tabelaConfigPricipalCad.novoReg}" title="#{mLbl['botao.excluir']}"/>
+                            <ice:panelGroup/>
+                            <ice:commandButton actionListener="#{repMaritimoCad.cancelar}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
+                        </ice:panelGrid>
+                        <ice:panelGroup style="height: 10px;"/>
                         <layout:tituloGrupo label="#{mLbl['label.RepMaritimoCad.dados']}"/>
                         <ice:panelGrid columns="2" columnClasses="labelCampoCad">
-                            <ice:outputText value="${mEnt['label.Empresa.short.scdCnpj']}"/>
+                            <ice:outputText value="${mEnt['label.Empresa.short.scdCnpj']}">
+<!--                                <f:convertNumber type="number" pattern="##.###.###/####-##"/> -->
+                            </ice:outputText>
                             <ice:inputText value="#{repMaritimoCad.tabelaConfigPricipalCad.selected['empresa']['scdCnpj']}" maxlength="15" style="width: 110px;"/>
 
                             <ice:outputText value="${mEnt['label.Empresa.short.sdcRazaoSocial']}"/>
@@ -41,10 +50,12 @@
                             <ice:outputText value="${mEnt['label.Empresa.short.snmFantasia']}"/>
                             <ice:inputText value="#{repMaritimoCad.tabelaConfigPricipalCad.selected['empresa']['snmFantasia']}" maxlength="100" style="width: 250px;"/>
                         </ice:panelGrid>                            
-                        <layout:tituloGrupo label="#{mLbl['label.FornecedorCad.endereco']}"/>                        
+                        <layout:tituloGrupo label="#{mLbl['label.RepMaritimoCad.endereco']}"/>                        
                         <ice:panelGrid columns="2" columnClasses="labelCampoCad">
                             <ice:outputText value="${mEnt['label.Empresa.short.scdCep']}"/>
-                            <ice:inputText value="#{repMaritimoCad.tabelaConfigPricipalCad.selected['empresa']['scdCep']}" maxlength="15" style="width: 110px;"/>
+                            <ice:inputText value="#{repMaritimoCad.tabelaConfigPricipalCad.selected['empresa']['scdCep']}" maxlength="15" style="width: 110px;">
+<!--                                <f:convertNumber type="number" pattern="#####-###"/> -->
+                            </ice:inputText>
 
                             <ice:outputText value="${mEnt['label.Empresa.short.sdcEndereco']}"/>
                             <ice:inputText value="#{repMaritimoCad.tabelaConfigPricipalCad.selected['empresa']['sdcEndereco']}" maxlength="100" style="width: 250px;"/>
@@ -52,22 +63,16 @@
                             <ice:outputText value="${mEnt['label.Empresa.short.snmCidade']}"/>
                             <ice:inputText value="#{repMaritimoCad.tabelaConfigPricipalCad.selected['empresa']['snmCidade']}" maxlength="50" style="width: 200px;"/>
                         </ice:panelGrid> 
-                        <layout:tituloGrupo label="#{mLbl['label.FornecedorCad.contato']}"/>
+                        <layout:tituloGrupo label="#{mLbl['label.RepMaritimoCad.contato']}"/>
                         <ice:panelGrid columns="2" columnClasses="labelCampoCad">                            
                             <ice:outputText value="${mEnt['label.Empresa.short.snmRepresentante']}"/>
                             <ice:inputText value="#{repMaritimoCad.tabelaConfigPricipalCad.selected['empresa']['snmRepresentante']}" maxlength="50" style="width: 200px;"/>
                             
                             <ice:outputText value="${mEnt['label.Empresa.short.sdcFone']}"/>
-                            <ice:inputText value="#{repMaritimoCad.tabelaConfigPricipalCad.selected['empresa']['sdcFone']}" maxlength="15" style="width: 110px;"/>
+                            <ice:inputText value="#{repMaritimoCad.tabelaConfigPricipalCad.selected['empresa']['sdcFone']}" maxlength="15" style="width: 110px;">
+<!--                                <f:convertNumber type="number" pattern="(##)####-####"/>-->
+                            </ice:inputText>
                         </ice:panelGrid>
-
-                        <f:facet name="footer">
-                            <ice:panelGroup>
-                                <ice:commandButton value="#{mLbl['botao.salvar']}" actionListener="#{repMaritimoCad.salvar}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonWood1.png"/>
-                                <ice:commandButton value="#{mLbl['botao.excluir']}" actionListener="#{repMaritimoCad.excluir}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonWood2.png"/>
-                                <ice:commandButton value="#{mLbl['botao.cancelar']}" actionListener="#{repMaritimoCad.cancelar}" styleClass="buttonsCad" image="#{facesContext.externalContext.requestContextPath}/images/buttonWood3.png"/>
-                            </ice:panelGroup>
-                        </f:facet>
                     </ice:panelGrid>
                 </f:facet>
             </ice:panelPopup>

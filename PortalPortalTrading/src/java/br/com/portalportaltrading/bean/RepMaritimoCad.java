@@ -73,7 +73,7 @@ public class RepMaritimoCad extends ComunTelas implements ImplementsCad{
         if(this.validaDadosClasse(this.tabelaConfigPricipalCad.getSelected()))
         {
             ((RepMaritimo)this.tabelaConfigPricipalCad.getSelected()).getEmpresa().setNidTipo(1);//TipoFornecedor
-            ((RepMaritimo)this.tabelaConfigPricipalCad.getSelected()).setNidAtivo(2);
+//            ((RepMaritimo)this.tabelaConfigPricipalCad.getSelected()).setNidAtivo(2);
             JpaAllEntities.insertOrUpdate(((RepMaritimo)this.tabelaConfigPricipalCad.getSelected()).getEmpresa(),
                     (RepMaritimo)this.tabelaConfigPricipalCad.getSelected());
             this.tabelaConfigPricipalCad.setVisablePopupCad(false);

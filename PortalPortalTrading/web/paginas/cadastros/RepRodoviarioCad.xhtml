@@ -5,11 +5,12 @@
                 xmlns:ice="http://www.icesoft.com/icefaces/component"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:pptM="http://java.sun.com/jsf/composite/componentes/mensagem"
-                xmlns:pptT="http://java.sun.com/jsf/composite/componentes/tabela"
+                xmlns:pptCT="http://java.sun.com/jsf/composite/componentes/tabela"
+                xmlns:layout="http://java.sun.com/jsf/composite/componentes/layout"
                 template="/paginas/template/Template.xhtml">
 
     <ui:define name="titulo">
-            Cadastro Representante Rodoviario
+        #{repRodoviarioCad.sdcTituloTelaCad}
     </ui:define>
 
     <ui:define name="conteudo">
@@ -18,40 +19,64 @@
             </script>
             <ice:outputStyle href="#{facesContext.externalContext.requestContextPath}/css/padrao.css"/>
         </h:head>
-        <ice:form id="idPopupCad">
-            <ice:panelPopup draggable="false" modal="true" visible="#{repRodoviarioCad.visivelRepRodoviarioCad}" rendered="#{repRodoviarioCad.visivelRepRodoviarioCad}" autoCentre="true">
-                <f:facet name="body">
-                    <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="tableBodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
+        <pptCT:DadosTabela tabelaConfig="#{repRodoviarioCad.tabelaConfigPricipalCad}" bean="${fornecedorCad}" onSelectRow="rowSelectionListener" permiteNovo="true"/>
+        <ice:form id="RepRodoviario">
+            <ice:panelPopup draggable="false" modal="true" autoCentre="true" visible="#{repRodoviarioCad.tabelaConfigPricipalCad.visablePopupCad}" rendered="#{repRodoviarioCad.tabelaConfigPricipalCad.visablePopupCad}">
+                <f:facet name="body" id="facetBody">
+                    <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="bodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
+
                         <f:facet name="header">
                             <ice:panelGroup>
                                 <ice:outputText value="#{repRodoviarioCad.sdcTituloTelaCad}"/>
                             </ice:panelGroup>
                         </f:facet>
-                        <ice:panelGrid columns="2">
-                            <ice:outputText value="#{mLbl['label.Rodoviario.idRepRodoviario']}"></ice:outputText>
-                            <ice:inputText value="#{repRodoviarioCad.rodoviario.idRepRodoviario}"></ice:inputText>
-                            <ice:outputText value="#{mLbl['label.Rodoviario.sdcRazaoSocial']}"></ice:outputText>
-                            <ice:inputSecret value="#{repRodoviarioCad.rodoviario.sdcRazaoSocial}"></ice:inputSecret>
-                            <ice:outputText value="#{mLbl['label.Rodoviario.scdCnpj']}"></ice:outputText>
-                            <ice:inputSecret value="#{repRodoviarioCad.rodoviario.scdCnpj}"></ice:inputSecret>
-                            <ice:outputText value="#{mLbl['label.Rodoviario.sdcEndereco']}"></ice:outputText>
-                            <ice:inputSecret value="#{repRodoviarioCad.rodoviario.sdcEndereco}"></ice:inputSecret>
-                            <ice:outputText value="#{mLbl['label.Rodoviario.sdcFone']}"></ice:outputText>
-                            <ice:inputSecret value="#{repRodoviarioCad.rodoviario.sdcFone}"></ice:inputSecret>
+                        <ice:panelGrid columns="4" styleClass="toolbarCad" columnClasses="nothing,nothing,width100,nothing">
+                            <ice:commandButton actionListener="#{repRodoviarioCad.salvar}" styleClass="buttonsCad buttonSave" title="#{mLbl['botao.salvar']}"/>
+                            <ice:commandButton actionListener="#{repRodoviarioCad.excluir}" styleClass="buttonsCad buttonExcluir" rendered="#{!repRodoviarioCad.tabelaConfigPricipalCad.novoReg}" title="#{mLbl['botao.excluir']}"/>
+                            <ice:panelGroup/>
+                            <ice:commandButton actionListener="#{repRodoviarioCad.cancelar}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
                         </ice:panelGrid>
-       
-                        <f:facet name="footer">
-                            <ice:panelGroup>
-                                <ice:commandButton value="#{mLbl['botao.salvar']}" action="#{repRodoviarioCad.salvar}"/>
-                                <ice:commandButton value="#{mLbl['botao.excluir']}" action="#{repRodoviarioCad.excluir}"/>
-                                <ice:commandButton value="#{mLbl['botao.cancelar']}" action="#{repRodoviarioCad.cancelar}"/>
-                            </ice:panelGroup>
-                        </f:facet>
+                        <ice:panelGroup style="height: 10px;"/>
+                        <layout:tituloGrupo label="#{mLbl['label.RepRodoviarioCad.dados']}"/>
+                        <ice:panelGrid columns="2" columnClasses="labelCampoCad">
+                            <ice:outputText value="${mEnt['label.Empresa.short.scdCnpj']}">
+<!--                                <f:convertNumber type="number" pattern="##.###.###/####-##"/> -->
+                            </ice:outputText>
+                            <ice:inputText value="#{repRodoviarioCad.tabelaConfigPricipalCad.selected['empresa']['scdCnpj']}" maxlength="15" style="width: 110px;"/>
+
+                            <ice:outputText value="${mEnt['label.Empresa.short.sdcRazaoSocial']}"/>
+                            <ice:inputText value="#{repRodoviarioCad.tabelaConfigPricipalCad.selected['empresa']['sdcRazaoSocial']}" maxlength="50" style="width: 250px;"/>
+
+                            <ice:outputText value="${mEnt['label.Empresa.short.snmFantasia']}"/>
+                            <ice:inputText value="#{repRodoviarioCad.tabelaConfigPricipalCad.selected['empresa']['snmFantasia']}" maxlength="100" style="width: 250px;"/>
+                        </ice:panelGrid>                            
+                        <layout:tituloGrupo label="#{mLbl['label.RepRodoviarioCad.endereco']}"/>                        
+                        <ice:panelGrid columns="2" columnClasses="labelCampoCad">
+                            <ice:outputText value="${mEnt['label.Empresa.short.scdCep']}"/>
+                            <ice:inputText value="#{repRodoviarioCad.tabelaConfigPricipalCad.selected['empresa']['scdCep']}" maxlength="15" style="width: 110px;">
+<!--                                <f:convertNumber type="number" pattern="#####-###"/> -->
+                            </ice:inputText>
+
+                            <ice:outputText value="${mEnt['label.Empresa.short.sdcEndereco']}"/>
+                            <ice:inputText value="#{repRodoviarioCad.tabelaConfigPricipalCad.selected['empresa']['sdcEndereco']}" maxlength="100" style="width: 250px;"/>
+
+                            <ice:outputText value="${mEnt['label.Empresa.short.snmCidade']}"/>
+                            <ice:inputText value="#{repRodoviarioCad.tabelaConfigPricipalCad.selected['empresa']['snmCidade']}" maxlength="50" style="width: 200px;"/>
+                        </ice:panelGrid> 
+                        <layout:tituloGrupo label="#{mLbl['label.RepRodoviarioCad.contato']}"/>
+                        <ice:panelGrid columns="2" columnClasses="labelCampoCad">                            
+                            <ice:outputText value="${mEnt['label.Empresa.short.snmRepresentante']}"/>
+                            <ice:inputText value="#{repRodoviarioCad.tabelaConfigPricipalCad.selected['empresa']['snmRepresentante']}" maxlength="50" style="width: 200px;"/>
+                            
+                            <ice:outputText value="${mEnt['label.Empresa.short.sdcFone']}"/>
+                            <ice:inputText value="#{repRodoviarioCad.tabelaConfigPricipalCad.selected['empresa']['sdcFone']}" maxlength="15" style="width: 110px;">
+<!--                                <f:convertNumber type="number" pattern="(##)####-####"/>-->
+                            </ice:inputText>
+                        </ice:panelGrid>
                     </ice:panelGrid>
                 </f:facet>
             </ice:panelPopup>
         </ice:form>
-        <pptT:DadosTabela tabelaConfig="#{repRodoviarioCad.tabelaConfig}" bean="#{repRodoviarioCad}" onSelectRow="rowSelectionListener"/>
         <pptM:popupMensagem bean="${repRodoviarioCad}"/>
     </ui:define>
 </ui:composition>
