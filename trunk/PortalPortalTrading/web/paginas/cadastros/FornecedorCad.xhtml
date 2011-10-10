@@ -40,7 +40,7 @@
                         <layout:tituloGrupo label="#{mLbl['label.FornecedorCad.dados']}"/>
                         <ice:panelGrid columns="2" columnClasses="labelCampoCad">
                             <ice:outputText value="${mEnt['label.Empresa.short.scdCnpj']}">
-                                <f:convertNumber type="number" pattern="##.###.###/####-##"/> 
+<!--                                <f:convertNumber type="number" pattern="##.###.###/####-##"/> -->
                             </ice:outputText>
                             <ice:inputText value="#{fornecedorCad.tabelaConfigPricipalCad.selected['empresa']['scdCnpj']}" maxlength="15" style="width: 110px;"/>
 
@@ -54,7 +54,7 @@
                         <ice:panelGrid columns="2" columnClasses="labelCampoCad">
                             <ice:outputText value="${mEnt['label.Empresa.short.scdCep']}"/>
                             <ice:inputText value="#{fornecedorCad.tabelaConfigPricipalCad.selected['empresa']['scdCep']}" maxlength="15" style="width: 110px;">
-                                <f:convertNumber type="number" pattern="#####-###"/> 
+<!--                                <f:convertNumber type="number" pattern="#####-###"/> -->
                             </ice:inputText>
 
                             <ice:outputText value="${mEnt['label.Empresa.short.sdcEndereco']}"/>
@@ -70,7 +70,7 @@
                             
                             <ice:outputText value="${mEnt['label.Empresa.short.sdcFone']}"/>
                             <ice:inputText value="#{fornecedorCad.tabelaConfigPricipalCad.selected['empresa']['sdcFone']}" maxlength="15" style="width: 110px;">
-                                <f:convertNumber type="number" pattern="(##)####-####"/>
+<!--                                <f:convertNumber type="number" pattern="(##)####-####"/>-->
                             </ice:inputText>
                         </ice:panelGrid>
                     </ice:panelGrid>
