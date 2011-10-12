@@ -10,6 +10,7 @@ import br.com.portalportaltrading.componentes.ComunTelas;
 import br.com.portalportaltrading.componentes.TabelaConfig;
 import br.com.portalportaltrading.util.UtlMsg;
 import br.com.portaltrading.annotations.AuxCadastroConsulta;
+import br.com.portaltrading.entidades.Empresa;
 import br.com.portaltrading.entidades.RepRodoviario;
 import br.com.portaltrading.jpa.JpaAllEntities;
 import com.icesoft.faces.component.ext.RowSelectorEvent;
@@ -28,7 +29,7 @@ import javax.faces.bean.ViewScoped;
 public class RepRodoviarioCad extends ComunTelas implements ImplementsCad{
     private final Class classePrinciapalCad  = RepRodoviario.class;
     private TabelaConfig tabelaConfigPricipalCad;
-    /** Creates a new instance of FornecedorCad */
+    /** Creates a new instance of RepRodoviarioCad */
     public RepRodoviarioCad() {
         this.sdcTituloTelaCad = UtlMsg.msg("tituloTabela.RepRodoviario");
         
@@ -48,6 +49,7 @@ public class RepRodoviarioCad extends ComunTelas implements ImplementsCad{
                         field.getName()), field.getName()));                
             }
         }
+        colunas.add(new Coluna(UtlMsg.msg("label.Empresa.short.sdcRazaoSocial"), "empresa","sdcRazaoSocial"));
         
         this.tabelaConfigPricipalCad.setColunasTabela(colunas);
         this.tabelaConfigPricipalCad.setQtdPaginas(new Integer(listRegPrincial.size()/10));
@@ -57,18 +59,26 @@ public class RepRodoviarioCad extends ComunTelas implements ImplementsCad{
     public void rowSelectionListener(RowSelectorEvent event) {
         this.tabelaConfigPricipalCad.setSelected(((RepRodoviario) this.tabelaConfigPricipalCad.getListaRegistros().get(event.getRow())).clone());
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
+        this.tabelaConfigPricipalCad.setNovoReg(false);  
     }
 
     public String novo() {
-        this.tabelaConfigPricipalCad.setSelected(new RepRodoviario());
+        RepRodoviario repRodoviario = new RepRodoviario();
+        repRodoviario.setEmpresa(new Empresa());
+        this.tabelaConfigPricipalCad.setSelected(repRodoviario);
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
+        this.tabelaConfigPricipalCad.setNovoReg(true);
         return "";
     }
 
     public String salvar() {
-        if(this.validaDadosClasse(this.tabelaConfigPricipalCad.getSelected()))
+        if(this.validaDadosClasse(this.tabelaConfigPricipalCad.getSelected()) &&
+                this.validaDadosClasse(((RepRodoviario)this.tabelaConfigPricipalCad.getSelected()).getEmpresa()))
         {
-            JpaAllEntities.insertOrUpdate((RepRodoviario)this.tabelaConfigPricipalCad.getSelected());
+            ((RepRodoviario)this.tabelaConfigPricipalCad.getSelected()).getEmpresa().setNidTipo(2);//TipoFornecedor
+//            ((RepRodoviario)this.tabelaConfigPricipalCad.getSelected()).setNidAtivo(1);
+            JpaAllEntities.insertOrUpdate(((RepRodoviario)this.tabelaConfigPricipalCad.getSelected()).getEmpresa(),
+                    (RepRodoviario)this.tabelaConfigPricipalCad.getSelected());
             this.tabelaConfigPricipalCad.setVisablePopupCad(false);
             
             List listRegPrincial = JpaAllEntities.listAll(classePrinciapalCad);
@@ -83,7 +93,8 @@ public class RepRodoviarioCad extends ComunTelas implements ImplementsCad{
     }
 
     public String excluir() {
-        JpaAllEntities.delete((RepRodoviario)this.tabelaConfigPricipalCad.getSelected());
+        JpaAllEntities.delete(((RepRodoviario)this.tabelaConfigPricipalCad.getSelected()).getEmpresa(),
+                (RepRodoviario)this.tabelaConfigPricipalCad.getSelected());
         this.tabelaConfigPricipalCad.setVisablePopupCad(false);
         
         List listRegPrincial = JpaAllEntities.listAll(classePrinciapalCad);
