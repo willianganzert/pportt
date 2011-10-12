@@ -59,6 +59,32 @@ body{
 
 /*
 *
+*  MENU
+*
+*/
+
+.buttonMenu{
+    background: url("../images/view.png") no-repeat scroll 6px 4px whiteSmoke;   
+    width: 200px;
+    height: 30px;
+    font-size: 10px;
+    color: #777976;    
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 35px;
+    text-align: left;
+}
+.buttonMenu:hover{
+    background: url("../images/viewOver.png") no-repeat scroll 6px 4px whiteSmoke;
+    color: mediumblue;
+    background-color: slategray;
+    border: 1px solid mediumblue;
+    cursor: pointer;
+    padding-left: 35px;
+    text-align: left;
+}
+
+/*
+*
 * POPUP CAD
 *
 */
@@ -126,7 +152,6 @@ body{
 .buttonsCad{
     width: 45px;
     height: 40px;
-    float: right;
     color: #777976;    
     border: 1px solid rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -182,13 +207,13 @@ body{
 .imagem_alerta{
     width: 50px;
     height: 50px;
-    background:url(../images/imagem_info.png) no-repeat top center;
+    background:url(../images/imagem_alerta.png) no-repeat top center;
     margin: 4px;
 }
 .imagem_erro{
     width: 50px;
     height: 50px;
-    background:url(../images/imagem_info.png) no-repeat top center;
+    background:url(../images/imagem_erro.png) no-repeat top center;
     margin: 4px;
 }
 
