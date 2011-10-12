@@ -72,7 +72,8 @@ public class FornecedorCad extends ComunTelas implements ImplementsCad{
     }
 
     public String salvar() {
-        if(this.validaDadosClasse(this.tabelaConfigPricipalCad.getSelected()))
+        if(this.validaDadosClasse(this.tabelaConfigPricipalCad.getSelected()) &&
+                this.validaDadosClasse(((Fornecedor)this.tabelaConfigPricipalCad.getSelected()).getEmpresa()))
         {
             ((Fornecedor)this.tabelaConfigPricipalCad.getSelected()).getEmpresa().setNidTipo(1);//TipoFornecedor
             ((Fornecedor)this.tabelaConfigPricipalCad.getSelected()).setNidAtivo(1);
@@ -92,7 +93,8 @@ public class FornecedorCad extends ComunTelas implements ImplementsCad{
     }
 
     public String excluir() {
-        JpaAllEntities.delete(((Fornecedor)this.tabelaConfigPricipalCad.getSelected()).getEmpresa(),(Fornecedor)this.tabelaConfigPricipalCad.getSelected());
+        JpaAllEntities.delete(((Fornecedor)this.tabelaConfigPricipalCad.getSelected()).getEmpresa(),
+                (Fornecedor)this.tabelaConfigPricipalCad.getSelected());
         this.tabelaConfigPricipalCad.setVisablePopupCad(false);
         
         List listRegPrincial = JpaAllEntities.listAll(classePrinciapalCad);
