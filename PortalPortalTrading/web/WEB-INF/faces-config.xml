@@ -1,3 +1,4 @@
+
 <faces-config
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -26,69 +27,48 @@
 
     </application>
                   
-<!--    
-
-
-
-
-<navigation-rule>
+    <navigation-rule>
         <from-view-id>/*</from-view-id>
         <navigation-case>
-            <from-outcome>PccApartamentosCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccApartamentosCad.xhtml</to-view-id>
+            <from-outcome>Home</from-outcome>
+            <to-view-id>/paginas/home/Home.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>PccConstrutoraCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccConstrutoraCad.xhtml</to-view-id>
+            <from-outcome>FornecedorCad</from-outcome>
+            <to-view-id>/paginas/cadastros/FornecedorCad.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>PccAgenciaCEFCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccAgenciaCEFCad.xhtml</to-view-id>
+            <from-outcome>RepRodoviarioCad</from-outcome>
+            <to-view-id>/paginas/cadastros/RepRodoviarioCad.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>PccSpeCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccSpeCad.xhtml</to-view-id>
+            <from-outcome>RepMaritimoCad</from-outcome>
+            <to-view-id>/paginas/cadastros/RepMaritimoCad.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>PccCasaCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccCasaCad.xhtml</to-view-id>
+            <from-outcome>DespachanteCad</from-outcome>
+            <to-view-id>/paginas/cadastros/DespachanteCad.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>PccComponenteUnidadeCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccComponenteUnidadeCad.xhtml</to-view-id>
+            <from-outcome>CaminhaoCad</from-outcome>
+            <to-view-id>/paginas/cadastros/CaminhaoCad.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>PccEmpreendimentoCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccEmpreendimentoCad.xhtml</to-view-id>
+            <from-outcome>ProdutoCad</from-outcome>
+            <to-view-id>/paginas/cadastros/ProdutoCad.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>PccEdificioCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccEdificioCad.xhtml</to-view-id>
+            <from-outcome>ManufaturadoCad</from-outcome>
+            <to-view-id>/paginas/cadastros/ManufaturadoCad.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>PccIncorporadorCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccIncorporadorCad.xhtml</to-view-id>
+            <from-outcome>FuncionarioCad</from-outcome>
+            <to-view-id>/paginas/cadastros/FuncionarioCad.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>PccIncorporadoresEmpreendimCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccIncorporadoresEmpreendimCad.xhtml</to-view-id>
+            <from-outcome>ClienteCad</from-outcome>
+            <to-view-id>/paginas/cadastros/ClienteCad.xhtml</to-view-id>
         </navigation-case>
-        <navigation-case>
-            <from-outcome>PccQuadraCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccQuadraCad.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>PccSubEmpreendimentoCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccSubEmpreendimentoCad.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>PccTipoUnidadeCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccTipoUnidadeCad.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>PccValoresImovelCad</from-outcome>
-            <to-view-id>/paginas/cadastros/PccValoresImovelCad.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>-->
+    </navigation-rule>
 </faces-config>
 
