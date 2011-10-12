@@ -22,7 +22,9 @@ public @interface AuxCadastroConsulta {
     boolean listaCadastro() default true;
     boolean listaConsulta() default true;    
     boolean requerido() default false;
+    boolean pai() default false;
     int length() default -1;
     TIPO_CAMPO tipoCampo() default TIPO_CAMPO.TEXT ;
     TIPO_DADO tipoDado() default TIPO_DADO.ALFA ;
+    
 }

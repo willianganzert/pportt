@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -41,6 +42,7 @@ public class RepRodoviario extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_REPRODOVIARIO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idreprodoviario")
+    @AuxCadastroConsulta(listaCadastro=false)
     private long idRepRodoviario;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "repRodoviario", fetch = FetchType.EAGER)

@@ -52,15 +52,15 @@ public class Caminhao extends ComunEntidades implements Serializable{
     private String sdcModelo;
     
     @Basic(optional = false)
-//    @Column(name = "ndtAno")
+//    @Column(name = "nAno")
     @Column()
-    @AuxCadastroConsulta(listaConsulta=false, tipoDado=AuxCadastroConsulta.TIPO_DADO.POSITIVO)
+    @AuxCadastroConsulta(requerido=true,listaConsulta=false, tipoDado=AuxCadastroConsulta.TIPO_DADO.POSITIVO)
     private int nAno;
     
     @Basic(optional = false)
 //    @Column(name = "scdPlaca")
     @Column()
-    @AuxCadastroConsulta(length=10)
+    @AuxCadastroConsulta(requerido=true,length=10)
     private String scdPlaca;
     
 //    @Column(name = "snmmotorista")
@@ -74,6 +74,7 @@ public class Caminhao extends ComunEntidades implements Serializable{
 //    @JoinColumn(name = "idreprodoviario", referencedColumnName = "idreprodoviario")
     @JoinColumn(name = "idRepRodoviario")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @AuxCadastroConsulta(requerido=true,pai=true,listaCadastro=false,listaConsulta=false,tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO)
     private RepRodoviario repRodoviario;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "caminhao", fetch = FetchType.EAGER)
@@ -86,7 +87,7 @@ public class Caminhao extends ComunEntidades implements Serializable{
         this.idCaminhao = idCaminhao;
     }
 
-    public Caminhao(long idCaminhao, String sdcModelo, int ndtAno, String scdPlaca) {
+    public Caminhao(long idCaminhao, String sdcModelo, int nAno, String scdPlaca) {
         this.idCaminhao = idCaminhao;
         this.sdcModelo = sdcModelo;
         this.nAno = nAno;

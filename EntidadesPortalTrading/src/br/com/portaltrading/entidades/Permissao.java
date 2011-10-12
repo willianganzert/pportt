@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -37,39 +38,44 @@ public class Permissao extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_PERMISSAO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idpermissao")
-    private Long idPermissao;
-    
-//    @Column(name = "sdcpermissao")
-    @Column()
-    private String sdcPermissao;
-    
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idPermissao;
+
     @Basic(optional = false)
 //    @Column(name = "ssgpermissao")
     @Column()
+    @AuxCadastroConsulta(requerido=true,length=4)
     private String ssgPermissao;
+    
+//    @Column(name = "sdcpermissao")
+    @Column()
+    @AuxCadastroConsulta(requerido=true,length=150)
+    private String sdcPermissao;
+    
     
 //    @JoinColumn(name = "idcargo", referencedColumnName = "idcargo")
     @JoinColumn(name = "idCargo")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @AuxCadastroConsulta(requerido=true,pai=true,listaCadastro=false,listaConsulta=false,tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO)
     private Cargo cargo;
 
     public Permissao() {
     }
 
-    public Permissao(Long idpermissao) {
+    public Permissao(long idpermissao) {
         this.idPermissao = idpermissao;
     }
 
-    public Permissao(Long idPermissao, String ssgPermissao) {
+    public Permissao(long idPermissao, String ssgPermissao) {
         this.idPermissao = idPermissao;
         this.ssgPermissao = ssgPermissao;
     }
 
-    public Long getIdPermissao() {
+    public long getIdPermissao() {
         return idPermissao;
     }
 
-    public void setIdPermissao(Long idPermissao) {
+    public void setIdPermissao(long idPermissao) {
         this.idPermissao = idPermissao;
     }
 
@@ -97,25 +103,6 @@ public class Permissao extends ComunEntidades implements Serializable {
         this.cargo = cargo;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idPermissao != null ? idPermissao.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Permissao)) {
-            return false;
-        }
-        Permissao other = (Permissao) object;
-        if ((this.idPermissao == null && other.idPermissao != null) || (this.idPermissao != null && !this.idPermissao.equals(other.idPermissao))) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {
