@@ -19,7 +19,7 @@
             </script>
             <ice:outputStyle href="#{facesContext.externalContext.requestContextPath}/css/padrao.css"/>
         </h:head>
-        <pptCT:DadosTabela tabelaConfig="#{repRodoviarioCad.tabelaConfigPricipalCad}" bean="${fornecedorCad}" onSelectRow="rowSelectionListener" permiteNovo="true"/>
+        <pptCT:DadosTabela tabelaConfig="#{repRodoviarioCad.tabelaConfigPricipalCad}" bean="${repRodoviarioCad}" onSelectRow="rowSelectionListener" permiteNovo="true"/>
         <ice:form id="RepRodoviario">
             <ice:panelPopup draggable="false" modal="true" autoCentre="true" visible="#{repRodoviarioCad.tabelaConfigPricipalCad.visablePopupCad}" rendered="#{repRodoviarioCad.tabelaConfigPricipalCad.visablePopupCad}">
                 <f:facet name="body" id="facetBody">
