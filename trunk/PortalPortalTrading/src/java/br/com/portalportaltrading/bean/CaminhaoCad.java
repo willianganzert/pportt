@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 /**
@@ -31,6 +33,7 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
     private TabelaConfig tabelaConfigPricipalCad;
     private List<SelectItem> repItemsRodoviarios;
     private List<RepRodoviario> repRodoviarios;
+    private long idRepRodoviarioSelected = 0;
     /** Creates a new instance of FornecedorCad */
     public CaminhaoCad() {
         this.sdcTituloTelaCad = UtlMsg.msg("tituloTabela.Caminhao");
@@ -102,21 +105,26 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
         this.tabelaConfigPricipalCad.setVisablePopupCad(false);        
         return "";
     }
-    public void changeRepRodoviario()
-    {
-        for (int i = 0; i < repItemsRodoviarios.size(); i++) {
-            SelectItem selectItem = repItemsRodoviarios.get(i);        
+    public void changeRepRodoviario(ValueChangeEvent event) {  
+//        FacesContext facesContext = FacesContext.getCurrentInstance();
+        long valorAntigo = (Long) event.getOldValue();
+        long valorNovo   = (Long) event.getNewValue();
+        if(valorNovo != 0) {
             for (int j = 0; j < repRodoviarios.size(); j++) {
                 RepRodoviario repRodoviario = repRodoviarios.get(j);
-                if(repRodoviario.getIdRepRodoviario() == ((Long)selectItem.getValue()).longValue()){
-                    ((Caminhao)this.tabelaConfigPricipalCad.getSelected()).setRepRodoviario(repRodoviario);
+                if(repRodoviario.getIdRepRodoviario() == valorNovo){
+                    ((Caminhao) this.tabelaConfigPricipalCad.getSelected()).setRepRodoviario(repRodoviario);
                     return;
                 }
             }
-        }        
+        }
+        else
+            ((Caminhao)this.tabelaConfigPricipalCad.getSelected()).setRepRodoviario(null);
     }
     private List<SelectItem> convertItensRepresentante(List<RepRodoviario> repRodoviarios){
         List<SelectItem> items = new ArrayList<SelectItem>();
+        items.add(new SelectItem(0, UtlMsg.msg("label.selecione")));
+        
         if(repRodoviarios != null && repRodoviarios.size() > 0){
             for (RepRodoviario repRodoviario : repRodoviarios) {
                 items.add(new SelectItem(repRodoviario.getIdRepRodoviario(),repRodoviario.getEmpresa().getSdcRazaoSocial()));                
@@ -136,5 +144,23 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
 
     public void setTabelaConfigPricipalCad(TabelaConfig tabelaConfigPricipalCad) {
         this.tabelaConfigPricipalCad = tabelaConfigPricipalCad;
-    }    
+    }
+
+    public List<SelectItem> getRepItemsRodoviarios() {
+        return repItemsRodoviarios;
+    }
+
+    public void setRepItemsRodoviarios(List<SelectItem> repItemsRodoviarios) {
+        this.repItemsRodoviarios = repItemsRodoviarios;
+    }
+
+    public long getIdRepRodoviarioSelected() {
+        return idRepRodoviarioSelected;
+    }
+
+    public void setIdRepRodoviarioSelected(long idRepRodoviarioSelected) {
+        this.idRepRodoviarioSelected = idRepRodoviarioSelected;
+    }
+    
+    
 }

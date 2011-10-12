@@ -31,7 +31,7 @@ public class ComunTelas {
     public void chamaInfoPopup(String sdcTitulo,String sdcMsg){
         this.tipoMensagem   = "info";
         this.sdcTitulo      = sdcTitulo.startsWith("label.")?UtlMsg.msg(sdcTitulo):sdcTitulo;
-        this.sdcMensagem    = sdcTitulo.startsWith("info.")?UtlMsg.msg(sdcMsg):sdcMsg;
+        this.sdcMensagem    = sdcMsg.startsWith("info.")?UtlMsg.msg(sdcMsg):sdcMsg;
         this.showPopup      = true;
     }
     public void chamaAlertaPopup(String sdcMsg){
@@ -40,7 +40,7 @@ public class ComunTelas {
     public void chamaAlertaPopup(String sdcTitulo,String sdcMsg){
         this.tipoMensagem   = "alerta";
         this.sdcTitulo      = sdcTitulo.startsWith("label.")?UtlMsg.msg(sdcTitulo):sdcTitulo;
-        this.sdcMensagem    = sdcTitulo.startsWith("alerta.")?UtlMsg.msg(sdcMsg):sdcMsg;
+        this.sdcMensagem    = sdcMsg.startsWith("alerta.")?UtlMsg.msg(sdcMsg):sdcMsg;
         this.showPopup      = true;
     }
     public void chamaErroPopup(String sdcMsg){
@@ -49,7 +49,7 @@ public class ComunTelas {
     public void chamaErroPopup(String sdcTitulo,String sdcMsg){
         this.tipoMensagem   = "erro";
         this.sdcTitulo      = sdcTitulo.startsWith("label.")?UtlMsg.msg(sdcTitulo):sdcTitulo;
-        this.sdcMensagem    = sdcTitulo.startsWith("erro.")?UtlMsg.msg(sdcMsg):sdcMsg;
+        this.sdcMensagem    = sdcMsg.startsWith("erro.")?UtlMsg.msg(sdcMsg):sdcMsg;
         this.showPopup      = true;
     }
 
@@ -95,11 +95,17 @@ public class ComunTelas {
                         valido = ((Number)field.get(object)).longValue() >= 0L;
                     }
                     
-                    if(acc.requerido())
-                    {
-                        valido = field.get(object) != null;
-                        if(valido)
-                            valido = ((String)field.get(object)).length() > 0;
+                    if(acc.requerido()) {
+                        if(!acc.pai()) {
+                            valido = field.get(object) != null;
+                            if(valido)
+                                valido = ("" + field.get(object)).length() > 0;
+                        }
+                        else {
+                            valido = field.get(object) != null;
+                            if(valido)
+                                valido = ((ComunEntidades)field.get(object)).getId() != 0;
+                        }
                     }
                 }catch(Exception e)
                 {

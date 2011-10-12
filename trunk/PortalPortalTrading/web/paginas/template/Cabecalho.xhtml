@@ -13,7 +13,7 @@
                     <tr>
                         <td height="86" width="9%">
                             <div align="center">
-                                <ice:graphicImage alt="Portal Trading" url="../../images/logoPortalTrading.png" style="width:180px; height:60px"/>
+                                <ice:graphicImage alt="Portal Trading" url="#{facesContext.externalContext.requestContextPath}/images/logoPortalTrading.png" style="width:180px; height:60px"/>
                             </div>
                         </td>
                     </tr>
@@ -24,7 +24,7 @@
         <tr>
             <td width="100%" valign="top" align="right">
                 <ice:form style="width: 100%">
-                    <ice:commandButton image="../../images/icoLogout.png" action="#{Home.logoff}"/>
+                    <ice:commandButton image="#{facesContext.externalContext.requestContextPath}/images/icoLogout.png" action="#{Home.logoff}"/>
                 </ice:form>
             </td>
         </tr>
