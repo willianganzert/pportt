@@ -62,6 +62,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
-        <welcome-file>welcomeICEfaces.jsf</welcome-file>
+        <welcome-file>/paginas/home/Home.jsf</welcome-file>
+<!--        <welcome-file>welcomeICEfaces.jsf</welcome-file>-->
     </welcome-file-list>
 </web-app>
