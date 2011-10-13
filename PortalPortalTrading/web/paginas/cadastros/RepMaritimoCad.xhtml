@@ -20,7 +20,7 @@
             <ice:outputStyle href="#{facesContext.externalContext.requestContextPath}/css/padrao.css"/>
         </h:head>
         <pptCT:DadosTabela tabelaConfig="#{repMaritimoCad.tabelaConfigPricipalCad}" bean="${repMaritimoCad}" onSelectRow="rowSelectionListener" permiteNovo="true"/>
-        <ice:form id="RepMaritimoCad">
+        <ice:form id="RepMaritimo">
             <ice:panelPopup draggable="false" modal="true" autoCentre="true" visible="#{repMaritimoCad.tabelaConfigPricipalCad.visablePopupCad}" rendered="#{repMaritimoCad.tabelaConfigPricipalCad.visablePopupCad}">
                 <f:facet name="body" id="facetBody">
                     <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="bodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
