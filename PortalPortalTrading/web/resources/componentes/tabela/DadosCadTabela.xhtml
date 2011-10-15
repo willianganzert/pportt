@@ -123,22 +123,20 @@
                                 <ice:outputText value="#{cc.attrs.tituloCad}"/>
                             </ice:panelGroup>
                         </f:facet>
+                        <ice:panelGrid columns="4" styleClass="toolbarCad" columnClasses="nothing,nothing,width100,nothing">
+                            <ice:commandButton actionListener="${cc.attrs.bean[cc.attrs.salvar]}" styleClass="buttonsCad buttonSave" title="#{mLbl['botao.salvar']}"/>
+                            <ice:commandButton actionListener="${cc.attrs.bean[cc.attrs.excluir]}" styleClass="buttonsCad buttonExcluir" rendered="#{!cc.attrs.bean['tabelaConfigPricipalCad']['novoReg']}" title="#{mLbl['botao.excluir']}"/>
+                            <ice:panelGroup/>
+                            <ice:commandButton actionListener="#{cc.attrs.bean[cc.attrs.cancelar]}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
+                        </ice:panelGrid>
                         <ice:panelSeries var="campo" value="#{cc.attrs.tabelaConfig.camposTabelaCad}">
-                            <ice:panelGrid columns="2">
-                                <ice:panelGroup>
-                                    <ice:outputText value="${campo.labelCampo}"/>
-                                    <ice:outputText value="*" style="color: red;" rendered="${campo.requerido}"/>
-                                </ice:panelGroup>
-                                <ice:inputText value="#{cc.attrs.tabelaConfig.selected[campo.snmCampo]}" maxlength="${campo.length > -1?campo.length:50}"></ice:inputText>
+                            <ice:panelGrid columns="2" columnClasses="labelCampoCad">
+                                <ice:outputText value="${campo.labelCampo}"/>
+<!--                            <ice:outputText value="*" style="color: red;" rendered="${campo.requerido}"/>-->
+                                
+                                <ice:inputText value="#{cc.attrs.tabelaConfig.selected[campo.snmCampo]}" required="${campo.requerido}" maxlength="${campo.length > -1?campo.length:50}"></ice:inputText>
                             </ice:panelGrid>
                         </ice:panelSeries>
-                        <f:facet name="footer">
-                            <ice:panelGroup>
-                                <ice:commandButton value="#{mLbl['botao.salvar']}" actionListener="${cc.attrs.bean[cc.attrs.salvar]}"/>
-                                <ice:commandButton value="#{mLbl['botao.excluir']}" actionListener="${cc.attrs.bean[cc.attrs.excluir]}"/>
-                                <ice:commandButton value="#{mLbl['botao.cancelar']}" actionListener="${cc.attrs.bean[cc.attrs.cancelar]}"/>
-                            </ice:panelGroup>
-                        </f:facet>
                     </ice:panelGrid>
                 </f:facet>
             </ice:panelPopup>
