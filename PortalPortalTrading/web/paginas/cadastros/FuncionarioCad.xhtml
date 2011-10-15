@@ -1,15 +1,16 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ice="http://www.icesoft.com/icefaces/component"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:pptM="http://java.sun.com/jsf/composite/componentes/mensagem"
-                xmlns:pptT="http://java.sun.com/jsf/composite/componentes/tabela"
+                xmlns:pptCT="http://java.sun.com/jsf/composite/componentes/tabela"
+                xmlns:layout="http://java.sun.com/jsf/composite/componentes/layout"
                 template="/paginas/template/Template.xhtml">
 
     <ui:define name="titulo">
-            Cadastro de Funcionarios
+        #{funcionarioCad.sdcTituloTelaCad}
     </ui:define>
 
     <ui:define name="conteudo">
@@ -18,40 +19,41 @@
             </script>
             <ice:outputStyle href="#{facesContext.externalContext.requestContextPath}/css/padrao.css"/>
         </h:head>
-        <ice:form id="idPopupCad">
-            <ice:panelPopup draggable="false" modal="true" visible="#{funcionarioCad.visivelFuncionarioCad}" rendered="#{usuarioCad.visivelFuncionarioCad}" autoCentre="true">
-                <f:facet name="body">
-                    <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="tableBodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
+        <pptCT:DadosTabela tabelaConfig="#{funcionarioCad.tabelaConfigPricipalCad}" bean="${funcionarioCad}" onSelectRow="rowSelectionListener" permiteNovo="true"/>
+        <ice:form id="FuncionarioCad">
+            <ice:panelPopup draggable="false" modal="true" autoCentre="true" visible="#{funcionarioCad.tabelaConfigPricipalCad.visablePopupCad}" rendered="#{funcionarioCad.tabelaConfigPricipalCad.visablePopupCad}">
+                <f:facet name="body" id="facetBody">
+                    <ice:panelGrid cellpadding="0" cellspacing="0" styleClass="bodyPopupCad" headerClass="headPopupCad" footerClass="footPopupCad" columns="1">
+
                         <f:facet name="header">
                             <ice:panelGroup>
                                 <ice:outputText value="#{funcionarioCad.sdcTituloTelaCad}"/>
                             </ice:panelGroup>
                         </f:facet>
-                        <ice:panelGrid columns="2">
-                            <ice:outputText value="#{mLbl['label.Funcionario.IdFuncionario']}"></ice:outputText>
-                            <ice:inputText value="#{usuarioCad.funcionario.idFuncionario}"></ice:inputText>
-                            <ice:outputText value="#{mLbl['label.Funcionario.snmFuncionario']}"></ice:outputText>
-                            <ice:inputSecret value="#{usuarioCad.funcionario.snmFuncionario}"></ice:inputSecret>
-                            <ice:outputText value="#{mLbl['label.Funcionario.scdRg']}"></ice:outputText>
-                            <ice:inputSecret value="#{usuarioCad.funcionario.scdRg}"></ice:inputSecret>
-                            <ice:outputText value="#{mLbl['label.Funcionario.scdCpf']}"></ice:outputText>
-                            <ice:inputSecret value="#{usuarioCad.funcionario.scdCpf}"></ice:inputSecret>
-                            <ice:outputText value="#{mLbl['label.Funcionario.ddtCadastro']}"></ice:outputText>
-                            <ice:inputSecret value="#{usuarioCad.funcionario.ddtCadastro}"></ice:inputSecret>
+                        <ice:panelGrid columns="4" styleClass="toolbarCad" columnClasses="nothing,nothing,width100,nothing">
+                            <ice:commandButton actionListener="#{funcionarioCad.salvar}" styleClass="buttonsCad buttonSave" title="#{mLbl['botao.salvar']}"/>
+                            <ice:commandButton actionListener="#{funcionarioCad.excluir}" styleClass="buttonsCad buttonExcluir" rendered="#{!funcionarioCad.tabelaConfigPricipalCad.novoReg}" title="#{mLbl['botao.excluir']}"/>
+                            <ice:panelGroup/>
+                            <ice:commandButton actionListener="#{funcionarioCad.cancelar}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
                         </ice:panelGrid>
-       
-                        <f:facet name="footer">
-                            <ice:panelGroup>
-                                <ice:commandButton value="#{mLbl['botao.salvar']}" action="#{funcionarioCad.salvar}"/>
-                                <ice:commandButton value="#{mLbl['botao.excluir']}" action="#{funcionarioCad.excluir}"/>
-                                <ice:commandButton value="#{mLbl['botao.cancelar']}" action="#{funcionarioCad.cancelar}"/>
-                            </ice:panelGroup>
-                        </f:facet>
+                        <ice:panelGroup style="height: 10px;"/>
+                        <layout:tituloGrupo label="#{mLbl['label.FuncionarioCad.dados']}"/>
+                        <ice:panelGrid columns="2" columnClasses="labelCampoCad">
+                            <ice:outputText value="${mEnt['label.Funcionario.short.snmFuncionario']}">
+<!--                                <f:convertNumber type="number" pattern="##.###.###/####-##"/> -->
+                            </ice:outputText>
+                            <ice:inputText value="#{funcionarioCad.tabelaConfigPricipalCad.selected['funcionario']['snmFuncionario']}" maxlength="15" style="width: 110px;"/>
+
+                            <ice:outputText value="${mEnt['label.Funcionario.short.scdRg']}"/>
+                            <ice:inputText value="#{funcionarioCad.tabelaConfigPricipalCad.selected['funcionario']['scdRg']}" maxlength="50" style="width: 250px;"/>
+
+                            <ice:outputText value="${mEnt['label.Funcionario.short.scdCpf']}"/>
+                            <ice:inputText value="#{funcionarioCad.tabelaConfigPricipalCad.selected['funcionario']['scdCpf']}" maxlength="100" style="width: 250px;"/>
+                        </ice:panelGrid>                            
                     </ice:panelGrid>
                 </f:facet>
             </ice:panelPopup>
         </ice:form>
-        <pptT:DadosTabela tabelaConfig="#{funcionarioCad.tabelaConfig}" bean="#{funcionarioCad}" onSelectRow="rowSelectionListener"/>
         <pptM:popupMensagem bean="${funcionarioCad}"/>
     </ui:define>
-</ui:composition
+</ui:composition>
