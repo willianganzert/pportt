@@ -51,19 +51,20 @@
                                 <ice:outputText value="#{tipoDocumentoCad.sdcTituloTelaCad}"/>
                             </ice:panelGroup>
                         </f:facet>
-                        <ice:panelGrid columns="2">
-                            <ice:outputText value="${mEnt['label.TipoDocumento.ssgDocumento']}"></ice:outputText>
-                                <ice:inputText value="#{tipoDocumentoCad.tipoDocumento.ssgDocumento}"></ice:inputText>
-                                <ice:outputText value="${mEnt['label.TipoDocumento.sdcDocumento']}"></ice:outputText>
-                                <ice:inputText value="#{tipoDocumentoCad.tipoDocumento.sdcDocumento}"></ice:inputText>
+                        <ice:panelGrid columns="4" styleClass="toolbarCad" columnClasses="nothing,nothing,width100,nothing">
+                            <ice:commandButton actionListener="${cc.attrs.bean[cc.attrs.salvar]}" styleClass="buttonsCad buttonSave" title="#{mLbl['botao.salvar']}"/>
+                            <ice:commandButton actionListener="${cc.attrs.bean[cc.attrs.excluir]}" styleClass="buttonsCad buttonExcluir" rendered="#{!cc.attrs.bean['tabelaConfigPricipalCad']['novoReg']}" title="#{mLbl['botao.excluir']}"/>
+                            <ice:panelGroup/>
+                            <ice:commandButton actionListener="#{cc.attrs.bean[cc.attrs.cancelar]}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
                         </ice:panelGrid>
-                        <f:facet name="footer">
-                            <ice:panelGroup>
-                                <ice:commandButton value="Salvar" actionListener="#{cc.attrs.bean[cc.attrs.salvar]}"/>
-                                <ice:commandButton value="Excluir" actionListener="#{cc.attrs.bean[cc.attrs.excluir]}"/>
-                                <ice:commandButton value="Cancelar" actionListener="#{cc.attrs.bean[cc.attrs.cancelar]}"/>
-                            </ice:panelGroup>
-                        </f:facet>
+                        <ice:panelSeries var="campo" value="#{cc.attrs.tabelaConfig.camposTabelaCad}">
+                            <ice:panelGrid columns="2" columnClasses="labelCampoCad">
+                                <ice:outputText value="${campo.labelCampo}"/>
+<!--                            <ice:outputText value="*" style="color: red;" rendered="${campo.requerido}"/>-->
+                                
+                                <ice:inputText value="#{cc.attrs.tabelaConfig.selected[campo.snmCampo]}" required="${campo.requerido}" maxlength="${campo.length > -1?campo.length:50}"></ice:inputText>
+                            </ice:panelGrid>
+                        </ice:panelSeries>
                     </ice:panelGrid>
                 </f:facet>
             </ice:panelPopup>

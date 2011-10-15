@@ -36,8 +36,8 @@
                             <ice:commandButton actionListener="#{caminhaoCad.cancelar}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
                         </ice:panelGrid>
                         <ice:panelGrid columns="2">
-                            <ice:outputText value="#{mEnt['tituloTabela.RepMaritimo']}"/>
-                            <ice:selectOneMenu valueChangeListener="#{caminhaoCad.changeRepRodoviario(event)}" value="#{caminhaoCad.idRepRodoviarioSelected}">
+                            <ice:outputText value="#{mEnt['tituloTabela.RepRodoviario']}"/>
+                            <ice:selectOneMenu valueChangeListener="#{caminhaoCad.changeRepRodoviario(event)}" partialSubmit="true" value="#{caminhaoCad.idRepRodoviarioSelected}">
                                 <f:selectItems value="#{caminhaoCad.repItemsRodoviarios}"/>
                             </ice:selectOneMenu>
                             <ice:outputText value="#{mEnt['label.Caminhao.sdcModelo']}"/>
