@@ -50,6 +50,12 @@ public class Produto extends ComunEntidades implements Serializable {
     @AuxCadastroConsulta(requerido=true,length=250)
     private String snmProduto;
     
+    @Basic(optional = false)
+//    @Column(name = "sdccodbarra")
+    @Column()
+    @AuxCadastroConsulta(requerido=true,length=250)
+    private String sdcCodBarra;
+    
 //    @Column(name = "sdcmarca")
     @Column()
     @AuxCadastroConsulta(requerido=true,length=150)
@@ -58,7 +64,7 @@ public class Produto extends ComunEntidades implements Serializable {
     @Basic(optional = false)
 //    @Column(name = "nidAtivo")
     @Column()
-    @AuxCadastroConsulta(listaCadastro=false)
+    @AuxCadastroConsulta(listaConsulta=false)
     private int nidAtivo;
     
 //    @JoinColumn(name = "idfornecedor", referencedColumnName = "idfornecedor")
@@ -103,6 +109,14 @@ public class Produto extends ComunEntidades implements Serializable {
         this.snmProduto = snmProduto;
     }
 
+    public String getSdcCodBarra() {
+        return sdcCodBarra;
+    }
+
+    public void setSdcCodBarra(String sdcCodBarra) {
+        this.sdcCodBarra = sdcCodBarra;
+    }
+    
     public String getSdcMarca() {
         return sdcMarca;
     }
