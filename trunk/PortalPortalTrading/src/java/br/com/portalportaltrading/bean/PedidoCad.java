@@ -9,8 +9,8 @@ import br.com.portalportaltrading.componentes.ComunTelas;
 import br.com.portalportaltrading.componentes.TabelaConfig;
 import br.com.portalportaltrading.util.UtlMsg;
 import br.com.portaltrading.annotations.AuxCadastroConsulta;
-import br.com.portaltrading.entidades.Caminhao;
-import br.com.portaltrading.entidades.RepRodoviario;
+import br.com.portaltrading.entidades.Pedido;
+import br.com.portaltrading.entidades.Cliente;
 import br.com.portaltrading.jpa.JpaAllEntities;
 import com.icesoft.faces.component.ext.RowSelectorEvent;
 import java.lang.reflect.Field;
@@ -27,17 +27,17 @@ import javax.faces.model.SelectItem;
  */
 @ManagedBean
 @ViewScoped
-public class CaminhaoCad extends ComunTelas implements ImplementsCad{
-    private final Class classePrinciapalCad  = Caminhao.class;
+public class PedidoCad extends ComunTelas implements ImplementsCad{
+    private final Class classePrinciapalCad  = Pedido.class;
     private TabelaConfig tabelaConfigPricipalCad;
-    private List<SelectItem> repItemsRodoviarios;
-    private List<RepRodoviario> repRodoviarios;
-    private long idRepRodoviarioSelected = 0;
-    /** Creates a new instance of CaminhaoCad */
-    public CaminhaoCad() {
-        this.sdcTituloTelaCad       = UtlMsg.msg("tituloTabela.Caminhao");
-        this.repRodoviarios         = JpaAllEntities.listAll(RepRodoviario.class);
-        this.repItemsRodoviarios    = this.convertItensRepresentante(this.repRodoviarios);
+    private List<SelectItem> itemsClientes;
+    private List<Cliente> clientes;
+    private long idClienteSelected = 0;
+    /** Creates a new instance of Pedido */
+    public PedidoCad() {
+        this.sdcTituloTelaCad       = UtlMsg.msg("tituloTabela.Pedido");
+        this.clientes                = JpaAllEntities.listAll(Cliente.class);
+        this.itemsClientes               = this.convertClientes(this.clientes);
         this.tabelaConfigPricipalCad = new TabelaConfig(classePrinciapalCad);
         
         List<Coluna> colunas    = new ArrayList<Coluna>();
@@ -61,14 +61,14 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
     }
     
     public void rowSelectionListener(RowSelectorEvent event) {
-        this.tabelaConfigPricipalCad.setSelected(((Caminhao) this.tabelaConfigPricipalCad.getListaRegistros().get(event.getRow())).clone());
-        this.idRepRodoviarioSelected = ((Caminhao) this.tabelaConfigPricipalCad.getSelected()).getRepRodoviario().getIdRepRodoviario();
+        this.tabelaConfigPricipalCad.setSelected(((Pedido) this.tabelaConfigPricipalCad.getListaRegistros().get(event.getRow())).clone());
+        this.idClienteSelected = ((Pedido) this.tabelaConfigPricipalCad.getSelected()).getCliente().getIdCliente();
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
         this.tabelaConfigPricipalCad.setNovoReg(false);
     }
 
     public String novo() {
-        this.tabelaConfigPricipalCad.setSelected(new Caminhao());
+        this.tabelaConfigPricipalCad.setSelected(new Pedido());
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
         this.tabelaConfigPricipalCad.setNovoReg(true);
         return "";
@@ -77,7 +77,7 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
     public String salvar() {
         if(this.validaDadosClasse(this.tabelaConfigPricipalCad.getSelected()))
         {
-            JpaAllEntities.insertOrUpdate((Caminhao)this.tabelaConfigPricipalCad.getSelected());
+            JpaAllEntities.insertOrUpdate((Pedido)this.tabelaConfigPricipalCad.getSelected());
             this.tabelaConfigPricipalCad.setVisablePopupCad(false);
             
             List listRegPrincial = JpaAllEntities.listAll(classePrinciapalCad);
@@ -92,7 +92,7 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
     }
 
     public String excluir() {
-        JpaAllEntities.delete((Caminhao)this.tabelaConfigPricipalCad.getSelected());
+        JpaAllEntities.delete((Pedido)this.tabelaConfigPricipalCad.getSelected());
         this.tabelaConfigPricipalCad.setVisablePopupCad(false);
         
         List listRegPrincial = JpaAllEntities.listAll(classePrinciapalCad);
@@ -105,29 +105,29 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
         this.tabelaConfigPricipalCad.setVisablePopupCad(false);        
         return "";
     }
-    public void changeRepRodoviario(ValueChangeEvent event) {  
+    public void changeCliente(ValueChangeEvent event) {  
 //        FacesContext facesContext = FacesContext.getCurrentInstance();
         long valorAntigo = (Long) event.getOldValue();
         long valorNovo   = (Long) event.getNewValue();
         if(valorNovo != 0) {
-            for (int j = 0; j < repRodoviarios.size(); j++) {
-                RepRodoviario repRodoviario = repRodoviarios.get(j);
-                if(repRodoviario.getIdRepRodoviario() == valorNovo){
-                    ((Caminhao) this.tabelaConfigPricipalCad.getSelected()).setRepRodoviario(repRodoviario);
+            for (int j = 0; j < clientes.size(); j++) {
+                Cliente cliente = clientes.get(j);
+                if(cliente.getIdCliente() == valorNovo){
+                    ((Pedido) this.tabelaConfigPricipalCad.getSelected()).setCliente(cliente);
                     return;
                 }
             }
         }
         else
-            ((Caminhao)this.tabelaConfigPricipalCad.getSelected()).setRepRodoviario(null);
+            ((Pedido)this.tabelaConfigPricipalCad.getSelected()).setCliente(null);
     }
-    private List<SelectItem> convertItensRepresentante(List<RepRodoviario> repRodoviarios){
+    private List<SelectItem> convertClientes(List<Cliente> clientes){
         List<SelectItem> items = new ArrayList<SelectItem>();
         items.add(new SelectItem(0, UtlMsg.msg("label.selecione")));
         
-        if(repRodoviarios != null && repRodoviarios.size() > 0){
-            for (RepRodoviario repRodoviario : repRodoviarios) {
-                items.add(new SelectItem(repRodoviario.getIdRepRodoviario(),repRodoviario.getEmpresa().getSdcRazaoSocial()));                
+        if(clientes != null && clientes.size() > 0){
+            for (Cliente cliente : clientes) {
+                items.add(new SelectItem(cliente.getIdCliente(),cliente.getSnmCliente()));                
             }
         }
         return items;
@@ -146,20 +146,20 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
         this.tabelaConfigPricipalCad = tabelaConfigPricipalCad;
     }
 
-    public List<SelectItem> getRepItemsRodoviarios() {
-        return repItemsRodoviarios;
+    public List<SelectItem> getItemsClientes() {
+        return itemsClientes;
     }
 
-    public void setRepItemsRodoviarios(List<SelectItem> repItemsRodoviarios) {
-        this.repItemsRodoviarios = repItemsRodoviarios;
+    public void setItemsClientes(List<SelectItem> itemsClientes) {
+        this.itemsClientes = itemsClientes;
     }
 
-    public long getIdRepRodoviarioSelected() {
-        return idRepRodoviarioSelected;
+    public long getIdClienteSelected() {
+        return idClienteSelected;
     }
 
-    public void setIdRepRodoviarioSelected(long idRepRodoviarioSelected) {
-        this.idRepRodoviarioSelected = idRepRodoviarioSelected;
+    public void setIdClienteSelected(long idClienteSelected) {
+        this.idClienteSelected = idClienteSelected;
     }
     
     
