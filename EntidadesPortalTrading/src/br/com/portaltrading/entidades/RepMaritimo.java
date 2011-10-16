@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -41,7 +42,8 @@ public class RepMaritimo extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_REPMARITIMO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idRepMaritimo")
-    private Long idRepMaritimo;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idRepMaritimo;
     
 //    @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
     @JoinColumn(name = "idEmpresa")
@@ -54,15 +56,15 @@ public class RepMaritimo extends ComunEntidades implements Serializable {
     public RepMaritimo() {
     }
 
-    public RepMaritimo(Long idRepMaritimo) {
+    public RepMaritimo(long idRepMaritimo) {
         this.idRepMaritimo = idRepMaritimo;
     }
 
-    public Long getIdRepMaritimo() {
+    public long getIdRepMaritimo() {
         return idRepMaritimo;
     }
 
-    public void setIdRepMaritimo(Long idRepMaritimo) {
+    public void setIdRepMaritimo(long idRepMaritimo) {
         this.idRepMaritimo = idRepMaritimo;
     }
 
@@ -81,26 +83,6 @@ public class RepMaritimo extends ComunEntidades implements Serializable {
 
     public void setContaineres(List<Container> containeres) {
         this.containeres = containeres;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idRepMaritimo != null ? idRepMaritimo.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof RepMaritimo)) {
-            return false;
-        }
-        RepMaritimo other = (RepMaritimo) object;
-        if ((this.idRepMaritimo == null && other.idRepMaritimo != null) || (this.idRepMaritimo != null && !this.idRepMaritimo.equals(other.idRepMaritimo))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

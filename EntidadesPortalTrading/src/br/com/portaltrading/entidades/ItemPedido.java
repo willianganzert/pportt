@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -37,16 +38,19 @@ public class ItemPedido extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_ITEMPEDIDO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idItemPedido")
-    private Long idItemPedido;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idItemPedido;
     
 //    @Column(name = "qtItens")
     @Column()
-    private Integer qtItens;
+    @AuxCadastroConsulta(requerido=true)
+    private int qtItens;
     
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
 //    @Column(name = "vlUnidadePagoCliente")
     @Column()
-    private Double vlUnidadePagoCliente;
+    @AuxCadastroConsulta()
+    private double vlUnidadePagoCliente;
     
 //    @JoinColumn(name = "idpedido", referencedColumnName = "idpedido")
     @JoinColumn(name = "idPedido")
@@ -61,31 +65,31 @@ public class ItemPedido extends ComunEntidades implements Serializable {
     public ItemPedido() {
     }
 
-    public ItemPedido(Long idItemPedido) {
+    public ItemPedido(long idItemPedido) {
         this.idItemPedido = idItemPedido;
     }
 
-    public Long getIdItemPedido() {
+    public long getIdItemPedido() {
         return idItemPedido;
     }
 
-    public void setIdItemPedido(Long idItemPedido) {
+    public void setIdItemPedido(long idItemPedido) {
         this.idItemPedido = idItemPedido;
     }
 
-    public Integer getQtItens() {
+    public int getQtItens() {
         return qtItens;
     }
 
-    public void setQtItens(Integer qtItens) {
+    public void setQtItens(int qtItens) {
         this.qtItens = qtItens;
     }
 
-    public Double getVlUnidadePagoCliente() {
+    public double getVlUnidadePagoCliente() {
         return vlUnidadePagoCliente;
     }
 
-    public void setVlUnidadePagoCliente(Double vlUnidadePagoCliente) {
+    public void setVlUnidadePagoCliente(double vlUnidadePagoCliente) {
         this.vlUnidadePagoCliente = vlUnidadePagoCliente;
     }
 
@@ -103,26 +107,6 @@ public class ItemPedido extends ComunEntidades implements Serializable {
 
     public void setManufaturado(Manufaturado manufaturado) {
         this.manufaturado = manufaturado;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idItemPedido != null ? idItemPedido.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ItemPedido)) {
-            return false;
-        }
-        ItemPedido other = (ItemPedido) object;
-        if ((this.idItemPedido == null && other.idItemPedido != null) || (this.idItemPedido != null && !this.idItemPedido.equals(other.idItemPedido))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

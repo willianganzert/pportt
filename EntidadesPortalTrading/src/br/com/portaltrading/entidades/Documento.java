@@ -4,6 +4,9 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
+import br.com.portaltrading.annotations.TipoInputCombo;
+import br.com.portaltrading.annotations.TipoInputLookup;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -14,8 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,16 +38,20 @@ public class Documento extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_DOCUMENTO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idDocumento")
-    private Long idDocumento;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idDocumento;
     
     @Basic(optional = false)
 //    @Column(name = "scdDocumento")
     @Column()
+    @AuxCadastroConsulta(length=50,requerido=true)
     private String scdDocumento;
     
 //    @JoinColumn(name = "idTipoDocumento", referencedColumnName = "idTipoDocumento")
     @JoinColumn(name = "idTipoDocumento")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @TipoInputCombo(campoDisplay="ssgDocumento")
+    @AuxCadastroConsulta(listaConsulta=false, tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO,pai=true,requerido=true)
     private TipoDocumento tipoDocumento;
 //    @JoinColumn(name = "idcliente", referencedColumnName = "idcliente")
     @JoinColumn(name = "idCliente")
@@ -56,20 +61,20 @@ public class Documento extends ComunEntidades implements Serializable {
     public Documento() {
     }
 
-    public Documento(Long idDocumento) {
+    public Documento(long idDocumento) {
         this.idDocumento = idDocumento;
     }
 
-    public Documento(Long idDocumento, String scdDocumento) {
+    public Documento(long idDocumento, String scdDocumento) {
         this.idDocumento    = idDocumento;
         this.scdDocumento   = scdDocumento;
     }
 
-    public Long getIdDocumento() {
+    public long getIdDocumento() {
         return idDocumento;
     }
 
-    public void setIdDocumento(Long idDocumento) {
+    public void setIdDocumento(long idDocumento) {
         this.idDocumento = idDocumento;
     }
 
@@ -95,26 +100,6 @@ public class Documento extends ComunEntidades implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idDocumento != null ? idDocumento.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Documento)) {
-            return false;
-        }
-        Documento other = (Documento) object;
-        if ((this.idDocumento == null && other.idDocumento != null) || (this.idDocumento != null && !this.idDocumento.equals(other.idDocumento))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

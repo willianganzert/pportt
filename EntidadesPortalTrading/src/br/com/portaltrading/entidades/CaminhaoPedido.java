@@ -17,8 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,20 +44,20 @@ public class CaminhaoPedido extends ComunEntidades implements Serializable {
     @Basic(optional = false)
 //    @Column(name = "stcaminhaopedido")
     @Column()
-    @AuxCadastroConsulta(listaCadastro=false)
-    @TipoInputCombo(valuesTpCombo="0,1,2,3")
+    @AuxCadastroConsulta(listaConsulta=false, tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO)
+    @TipoInputCombo(valuesTpCombo="1,2,3,4")
     private int stCaminhaoPedido;
     
     @JoinColumn(name = "idPedido")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @AuxCadastroConsulta()
+    @AuxCadastroConsulta(pai=true,requerido=true)
     @TipoInputLookup(campoDisplay="sdcPedido")
     private Pedido pedido;
     
     @JoinColumn(name = "idCaminhao")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @TipoInputLookup(campoIdentificador="scdPlaca",campoDisplay="sdcPedido")
-    @AuxCadastroConsulta()
+    @AuxCadastroConsulta(pai=true,requerido=true)
     private Caminhao caminhao;
 
     public CaminhaoPedido() {

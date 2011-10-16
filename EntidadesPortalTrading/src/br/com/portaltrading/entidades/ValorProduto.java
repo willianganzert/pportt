@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -15,8 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,10 +39,12 @@ public class ValorProduto extends ComunEntidades implements Serializable {
     @Basic(optional = false)
     @Column(unique=true, nullable=false, precision=22)
 //    @Column(name = "idValorProduto")
-    private Long idValorProduto;
+    @AuxCadastroConsulta(listaConsulta=false)
+    private long idValorProduto;
     @Basic(optional = false)
 //    @Column(name = "vlProduto")
     @Column()
+    @AuxCadastroConsulta(requerido=true)
     private double vlProduto;
     
 //    @Column(name = "ddtinativo")
@@ -59,20 +60,20 @@ public class ValorProduto extends ComunEntidades implements Serializable {
     public ValorProduto() {
     }
 
-    public ValorProduto(Long idValorProduto) {
+    public ValorProduto(long idValorProduto) {
         this.idValorProduto = idValorProduto;
     }
 
-    public ValorProduto(Long idValorProduto, double vlProduto) {
+    public ValorProduto(long idValorProduto, double vlProduto) {
         this.idValorProduto = idValorProduto;
         this.vlProduto = vlProduto;
     }
 
-    public Long getIdValorProduto() {
+    public long getIdValorProduto() {
         return idValorProduto;
     }
 
-    public void setIdValorProduto(Long idValorProduto) {
+    public void setIdValorProduto(long idValorProduto) {
         this.idValorProduto = idValorProduto;
     }
 
@@ -98,26 +99,6 @@ public class ValorProduto extends ComunEntidades implements Serializable {
 
     public void setIdProduto(Produto idproduto) {
         this.produto = idproduto;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idValorProduto != null ? idValorProduto.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ValorProduto)) {
-            return false;
-        }
-        ValorProduto other = (ValorProduto) object;
-        if ((this.idValorProduto == null && other.idValorProduto != null) || (this.idValorProduto != null && !this.idValorProduto.equals(other.idValorProduto))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

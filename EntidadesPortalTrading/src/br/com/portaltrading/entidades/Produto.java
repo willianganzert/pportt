@@ -4,6 +4,8 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
+import br.com.portaltrading.annotations.TipoInputCombo;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -39,25 +41,31 @@ public class Produto extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_PRODUTO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idProduto")
-    private Long idProduto;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idProduto;
     
     @Basic(optional = false)
 //    @Column(name = "snmProduto")
     @Column()
+    @AuxCadastroConsulta(requerido=true,length=250)
     private String snmProduto;
     
 //    @Column(name = "sdcmarca")
     @Column()
+    @AuxCadastroConsulta(requerido=true,length=150)
     private String sdcMarca;
     
     @Basic(optional = false)
 //    @Column(name = "nidAtivo")
     @Column()
+    @AuxCadastroConsulta(listaCadastro=false)
     private int nidAtivo;
     
 //    @JoinColumn(name = "idfornecedor", referencedColumnName = "idfornecedor")
     @JoinColumn(name = "idfornecedor")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @TipoInputCombo(campoDisplay="empresa.sdcRazaoSocial")
+    @AuxCadastroConsulta(listaConsulta=false, tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO,pai=true,requerido=true)
     private Fornecedor fornecedor;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto", fetch = FetchType.EAGER)
@@ -69,21 +77,21 @@ public class Produto extends ComunEntidades implements Serializable {
     public Produto() {
     }
 
-    public Produto(Long idProduto) {
+    public Produto(long idProduto) {
         this.idProduto = idProduto;
     }
 
-    public Produto(Long idProduto, String snmProduto, int nidAtivo) {
+    public Produto(long idProduto, String snmProduto, int nidAtivo) {
         this.idProduto = idProduto;
         this.snmProduto = snmProduto;
         this.nidAtivo = nidAtivo;
     }
 
-    public Long getIdProduto() {
+    public long getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(Long idProduto) {
+    public void setIdProduto(long idProduto) {
         this.idProduto = idProduto;
     }
 
@@ -135,26 +143,6 @@ public class Produto extends ComunEntidades implements Serializable {
 
     public void setValorProdutoList(List<ValorProduto> valorProdutoList) {
         this.valorProdutoList = valorProdutoList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idProduto != null ? idProduto.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Produto)) {
-            return false;
-        }
-        Produto other = (Produto) object;
-        if ((this.idProduto == null && other.idProduto != null) || (this.idProduto != null && !this.idProduto.equals(other.idProduto))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

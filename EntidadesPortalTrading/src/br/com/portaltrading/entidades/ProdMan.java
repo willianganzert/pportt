@@ -16,8 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -41,7 +39,7 @@ public class ProdMan extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_PRODMAN_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idprodman")
-    private Long idProdMan;
+    private long idProdMan;
     
 //    @JoinColumn(name = "idproduto", referencedColumnName = "idproduto")
     @JoinColumn(name = "idProduto")
@@ -59,15 +57,15 @@ public class ProdMan extends ComunEntidades implements Serializable {
     public ProdMan() {
     }
 
-    public ProdMan(Long idprodman) {
+    public ProdMan(long idprodman) {
         this.idProdMan = idprodman;
     }
 
-    public Long getIdProdMan() {
+    public long getIdProdMan() {
         return idProdMan;
     }
 
-    public void setIdProdMan(Long idProdMan) {
+    public void setIdProdMan(long idProdMan) {
         this.idProdMan = idProdMan;
     }
 
@@ -94,26 +92,6 @@ public class ProdMan extends ComunEntidades implements Serializable {
 
     public void setProdutosValidados(List<ProdutoValidado> produtosValidados) {
         this.produtosValidados = produtosValidados;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idProdMan != null ? idProdMan.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProdMan)) {
-            return false;
-        }
-        ProdMan other = (ProdMan) object;
-        if ((this.idProdMan == null && other.idProdMan != null) || (this.idProdMan != null && !this.idProdMan.equals(other.idProdMan))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

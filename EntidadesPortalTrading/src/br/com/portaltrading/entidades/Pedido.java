@@ -5,6 +5,7 @@
 package br.com.portaltrading.entidades;
 
 import br.com.portaltrading.annotations.AuxCadastroConsulta;
+import br.com.portaltrading.annotations.TipoInputCombo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -45,46 +44,56 @@ public class Pedido extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_PEDIDO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idPedido")
-    private Long idPedido;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idPedido;
     
     //    @Column(name = "sdcpedido")
     @Column()
-    @AuxCadastroConsulta(length=60)
+    @AuxCadastroConsulta(length=60,requerido=true)
     private String sdcPedido;
             
     @Basic(optional = false)
 //    @Column(name = "stPedido")
     @Column()
+    @TipoInputCombo(valuesTpCombo="1,2,3")
+    @AuxCadastroConsulta(listaConsulta=false, tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO)
     private int stPedido;
     
     @Basic(optional = false)
 //    @Column(name = "ddtPedido")
     @Column()
     @Temporal(TemporalType.DATE)
+    @AuxCadastroConsulta(listaConsulta=false,tipoDado= AuxCadastroConsulta.TIPO_DADO.DATA,requerido=true)
     private Date ddtPedido;
     
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
 //    @Column(name = "vltotal")
     @Column()
-    private Double vlTotal;
+    @AuxCadastroConsulta(requerido=true)
+    private double vlTotal;
     
 //    @Column(name = "ddtsaida")
     @Column()
     @Temporal(TemporalType.DATE)
+    @AuxCadastroConsulta(listaConsulta=false,tipoDado= AuxCadastroConsulta.TIPO_DADO.DATA)
     private Date ddtSaida;
     
 //    @Column(name = "ddtchegada")
     @Column()
     @Temporal(TemporalType.DATE)
+    @AuxCadastroConsulta(listaConsulta=false,tipoDado= AuxCadastroConsulta.TIPO_DADO.DATA)
     private Date ddtChegada;
     
 //    @Column(name = "stlaudo")
     @Column()
-    private Integer stLaudo;
+    @TipoInputCombo(valuesTpCombo="1,2,3")
+    @AuxCadastroConsulta(listaConsulta=false, tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO)
+    private int stLaudo;
     
 //    @Column(name = "ddtlaudo")
     @Column()
     @Temporal(TemporalType.DATE)
+    @AuxCadastroConsulta(listaConsulta=false,tipoDado= AuxCadastroConsulta.TIPO_DADO.DATA)
     private Date ddtLaudo;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.EAGER)
@@ -104,6 +113,8 @@ public class Pedido extends ComunEntidades implements Serializable {
 //    @JoinColumn(name = "iddespachante", referencedColumnName = "iddespachante")
     @JoinColumn(name = "idDespachante")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @TipoInputCombo(campoDisplay="snmRepDespachante")
+    @AuxCadastroConsulta(listaConsulta=false, tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO,pai=true,requerido=true)
     private Despachante despachante;
     
 //    @JoinColumn(name = "idcliente", referencedColumnName = "idcliente")
@@ -117,21 +128,21 @@ public class Pedido extends ComunEntidades implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(Long idPedido) {
+    public Pedido(long idPedido) {
         this.idPedido = idPedido;
     }
 
-    public Pedido(Long idPedido, int stPedido, Date ddtPedido) {
+    public Pedido(long idPedido, int stPedido, Date ddtPedido) {
         this.idPedido = idPedido;
         this.stPedido = stPedido;
         this.ddtPedido = ddtPedido;
     }
 
-    public Long getIdPedido() {
+    public long getIdPedido() {
         return idPedido;
     }
 
-    public void setIdPedido(Long idPedido) {
+    public void setIdPedido(long idPedido) {
         this.idPedido = idPedido;
     }
 
@@ -159,11 +170,11 @@ public class Pedido extends ComunEntidades implements Serializable {
         this.ddtPedido = ddtPedido;
     }
 
-    public Double getVlTotal() {
+    public double getVlTotal() {
         return vlTotal;
     }
 
-    public void setVlTotal(Double vlTotal) {
+    public void setVlTotal(double vlTotal) {
         this.vlTotal = vlTotal;
     }
 
@@ -183,11 +194,11 @@ public class Pedido extends ComunEntidades implements Serializable {
         this.ddtChegada = ddtChegada;
     }
 
-    public Integer getStLaudo() {
+    public int getStLaudo() {
         return stLaudo;
     }
 
-    public void setStLaudo(Integer stLaudo) {
+    public void setStLaudo(int stLaudo) {
         this.stLaudo = stLaudo;
     }
 
@@ -257,26 +268,6 @@ public class Pedido extends ComunEntidades implements Serializable {
 
     public void setProdutosValidados(List<ProdutoValidado> produtosValidados) {
         this.produtosValidados = produtosValidados;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idPedido != null ? idPedido.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pedido)) {
-            return false;
-        }
-        Pedido other = (Pedido) object;
-        if ((this.idPedido == null && other.idPedido != null) || (this.idPedido != null && !this.idPedido.equals(other.idPedido))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

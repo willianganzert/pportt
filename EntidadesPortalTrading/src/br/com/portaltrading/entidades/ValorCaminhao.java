@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -40,11 +41,13 @@ public class ValorCaminhao extends ComunEntidades implements Serializable {
     @Basic(optional = false)
     @Column(unique=true, nullable=false, precision=22)
 //    @Column(name = "idvalorcaminhao")
-    private Long idValorCaminhao;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idValorCaminhao;
     
     @Basic(optional = false)
 //    @Column(name = "vlcaminhao")
     @Column()
+    @AuxCadastroConsulta(listaConsulta=false,requerido=true)
     private double vlCaminhao;
     
 //    @Column(name = "ddtinativo")
@@ -60,20 +63,20 @@ public class ValorCaminhao extends ComunEntidades implements Serializable {
     public ValorCaminhao() {
     }
 
-    public ValorCaminhao(Long idValorCaminhao) {
+    public ValorCaminhao(long idValorCaminhao) {
         this.idValorCaminhao = idValorCaminhao;
     }
 
-    public ValorCaminhao(Long idValorCaminhao, double vlCaminhao) {
+    public ValorCaminhao(long idValorCaminhao, double vlCaminhao) {
         this.idValorCaminhao = idValorCaminhao;
         this.vlCaminhao = vlCaminhao;
     }
 
-    public Long getIdValorCaminhao() {
+    public long getIdValorCaminhao() {
         return idValorCaminhao;
     }
 
-    public void setIdValorCaminhao(Long idValorCaminhao) {
+    public void setIdValorCaminhao(long idValorCaminhao) {
         this.idValorCaminhao = idValorCaminhao;
     }
 
@@ -99,26 +102,6 @@ public class ValorCaminhao extends ComunEntidades implements Serializable {
 
     public void setCaminhao(Caminhao caminhao) {
         this.caminhao = caminhao;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idValorCaminhao != null ? idValorCaminhao.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ValorCaminhao)) {
-            return false;
-        }
-        ValorCaminhao other = (ValorCaminhao) object;
-        if ((this.idValorCaminhao == null && other.idValorCaminhao != null) || (this.idValorCaminhao != null && !this.idValorCaminhao.equals(other.idValorCaminhao))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

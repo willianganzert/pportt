@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -14,8 +15,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -39,15 +38,18 @@ public class Manufaturado extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_MANUFATURADO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idManufaturado")
-    private Long idManufaturado;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idManufaturado;
     
     @Basic(optional = false)
 //    @Column(name = "sdcManofaturado")
     @Column()
+    @AuxCadastroConsulta(requerido=true,length=150)
     private String sdcManofaturado;
     
 //    @Column(name = "sdccompleta")
     @Column()
+    @AuxCadastroConsulta(listaConsulta=false,requerido=true,length=600)
     private String sdcCompleta;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufaturado", fetch = FetchType.EAGER)
@@ -59,20 +61,20 @@ public class Manufaturado extends ComunEntidades implements Serializable {
     public Manufaturado() {
     }
 
-    public Manufaturado(Long idManufaturado) {
+    public Manufaturado(long idManufaturado) {
         this.idManufaturado = idManufaturado;
     }
 
-    public Manufaturado(Long idManufaturado, String sdcManofaturado) {
+    public Manufaturado(long idManufaturado, String sdcManofaturado) {
         this.idManufaturado = idManufaturado;
         this.sdcManofaturado = sdcManofaturado;
     }
 
-    public Long getIdManufaturado() {
+    public long getIdManufaturado() {
         return idManufaturado;
     }
 
-    public void setIdManufaturado(Long idManufaturado) {
+    public void setIdManufaturado(long idManufaturado) {
         this.idManufaturado = idManufaturado;
     }
 
@@ -109,27 +111,6 @@ public class Manufaturado extends ComunEntidades implements Serializable {
     public void setProdManList(List<ProdMan> prodManList) {
         this.prodManList = prodManList;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idManufaturado != null ? idManufaturado.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Manufaturado)) {
-            return false;
-        }
-        Manufaturado other = (Manufaturado) object;
-        if ((this.idManufaturado == null && other.idManufaturado != null) || (this.idManufaturado != null && !this.idManufaturado.equals(other.idManufaturado))) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public String toString() {
         return "br.com.portaltrading.entidades.Manufaturado[ idManufaturado=" + idManufaturado + " ]";

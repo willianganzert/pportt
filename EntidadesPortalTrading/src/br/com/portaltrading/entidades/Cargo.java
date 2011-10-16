@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -39,11 +40,13 @@ public class Cargo extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_CARGO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idcargo")
-    private Long idCargo;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idCargo;
     
     @Basic(optional = false)
 //    @Column(name = "sdccargo")
     @Column()
+    @AuxCadastroConsulta(requerido=true,length=150)
     private String sdcCargo;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cargo", fetch = FetchType.EAGER)
@@ -55,20 +58,20 @@ public class Cargo extends ComunEntidades implements Serializable {
     public Cargo() {
     }
 
-    public Cargo(Long idCargo) {
+    public Cargo(long idCargo) {
         this.idCargo = idCargo;
     }
 
-    public Cargo(Long idCargo, String sdcCargo) {
+    public Cargo(long idCargo, String sdcCargo) {
         this.idCargo = idCargo;
         this.sdcCargo = sdcCargo;
     }
 
-    public Long getIdCargo() {
+    public long getIdCargo() {
         return idCargo;
     }
 
-    public void setIdCargo(Long idCargo) {
+    public void setIdCargo(long idCargo) {
         this.idCargo = idCargo;
     }
 
@@ -97,27 +100,7 @@ public class Cargo extends ComunEntidades implements Serializable {
     public void setFuncionarios(List<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idCargo != null ? idCargo.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cargo)) {
-            return false;
-        }
-        Cargo other = (Cargo) object;
-        if ((this.idCargo == null && other.idCargo != null) || (this.idCargo != null && !this.idCargo.equals(other.idCargo))) {
-            return false;
-        }
-        return true;
-    }
-
+    
     @Override
     public String toString() {
         return "br.com.portaltrading.entidades.Cargo[ idCargo=" + idCargo + " ]";

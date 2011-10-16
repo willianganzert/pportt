@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -16,8 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -41,26 +40,31 @@ public class Container extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_CONTAINER_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idContainer")
-    private Long idContainer;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idContainer;
     
     @Basic(optional = false)
 //    @Column(name = "ntonelagem")
     @Column()
+    @AuxCadastroConsulta(requerido=true,tipoDado= AuxCadastroConsulta.TIPO_DADO.POSITIVO)
     private double ntonelagem;
     
     @Basic(optional = false)
 //    @Column(name = "ncomprimento")
     @Column()
+    @AuxCadastroConsulta(requerido=true,tipoDado= AuxCadastroConsulta.TIPO_DADO.POSITIVO)
     private double ncomprimento;
     
     @Basic(optional = false)
 //    @Column(name = "nlargura")
     @Column()
+    @AuxCadastroConsulta(requerido=true,tipoDado= AuxCadastroConsulta.TIPO_DADO.POSITIVO)
     private double nlargura;
     
     @Basic(optional = false)
 //    @Column(name = "naltura")
     @Column()
+    @AuxCadastroConsulta(requerido=true,tipoDado= AuxCadastroConsulta.TIPO_DADO.POSITIVO)
     private double naltura;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "container", fetch = FetchType.EAGER)
@@ -72,16 +76,17 @@ public class Container extends ComunEntidades implements Serializable {
 //    @JoinColumn(name = "idrepMaritimo", referencedColumnName = "idrepMaritimo")
     @JoinColumn(name = "idRepMaritimo")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @AuxCadastroConsulta(listaConsulta=false,requerido=true,pai=true)
     private RepMaritimo repMaritimo;
 
     public Container() {
     }
 
-    public Container(Long idContainer) {
+    public Container(long idContainer) {
         this.idContainer = idContainer;
     }
 
-    public Container(Long idContainer, double ntonelagem, double ncomprimento, double nlargura, double naltura) {
+    public Container(long idContainer, double ntonelagem, double ncomprimento, double nlargura, double naltura) {
         this.idContainer = idContainer;
         this.ntonelagem = ntonelagem;
         this.ncomprimento = ncomprimento;
@@ -89,11 +94,11 @@ public class Container extends ComunEntidades implements Serializable {
         this.naltura = naltura;
     }
 
-    public Long getIdContainer() {
+    public long getIdContainer() {
         return idContainer;
     }
 
-    public void setIdContainer(Long idContainer) {
+    public void setIdContainer(long idContainer) {
         this.idContainer = idContainer;
     }
 
@@ -153,26 +158,6 @@ public class Container extends ComunEntidades implements Serializable {
 
     public void setRepMaritimo(RepMaritimo repMaritimo) {
         this.repMaritimo = repMaritimo;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idContainer != null ? idContainer.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Container)) {
-            return false;
-        }
-        Container other = (Container) object;
-        if ((this.idContainer == null && other.idContainer != null) || (this.idContainer != null && !this.idContainer.equals(other.idContainer))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

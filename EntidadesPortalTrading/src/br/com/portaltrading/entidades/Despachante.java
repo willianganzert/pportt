@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -41,11 +42,13 @@ public class Despachante extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_DESPACHANTE_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idDespachante")
-    private Long idDespachante;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idDespachante;
     
     @Basic(optional = false)
 //    @Column(name = "snmRepDespachante")
     @Column()
+    @AuxCadastroConsulta(length=50)
     private String snmRepDespachante;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "despachante", fetch = FetchType.EAGER)
@@ -62,20 +65,20 @@ public class Despachante extends ComunEntidades implements Serializable {
     public Despachante() {
     }
 
-    public Despachante(Long idDespachante) {
+    public Despachante(long idDespachante) {
         this.idDespachante = idDespachante;
     }
 
-    public Despachante(Long idDespachante, String snmRepDespachante) {
+    public Despachante(long idDespachante, String snmRepDespachante) {
         this.idDespachante = idDespachante;
         this.snmRepDespachante = snmRepDespachante;
     }
 
-    public Long getIdDespachante() {
+    public long getIdDespachante() {
         return idDespachante;
     }
 
-    public void setIdDespachante(Long idDespachante) {
+    public void setIdDespachante(long idDespachante) {
         this.idDespachante = idDespachante;
     }
 
@@ -114,26 +117,6 @@ public class Despachante extends ComunEntidades implements Serializable {
 
     public void setValoresDespachante(List<ValorDespachante> valorDespachante) {
         this.valoresDespachante = valorDespachante;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idDespachante != null ? idDespachante.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Despachante)) {
-            return false;
-        }
-        Despachante other = (Despachante) object;
-        if ((this.idDespachante == null && other.idDespachante != null) || (this.idDespachante != null && !this.idDespachante.equals(other.idDespachante))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

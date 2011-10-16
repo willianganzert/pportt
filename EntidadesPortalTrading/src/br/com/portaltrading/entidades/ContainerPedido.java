@@ -4,6 +4,9 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
+import br.com.portaltrading.annotations.TipoInputCombo;
+import br.com.portaltrading.annotations.TipoInputLookup;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -37,40 +40,46 @@ public class ContainerPedido extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_CONTAINERPEDIDO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idContainerPedido")
-    private Long idContainerPedido;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idContainerPedido;
     
     @Basic(optional = false)
 //    @Column(name = "stEmbarque")
     @Column()
+    @TipoInputCombo(valuesTpCombo="1,2,3,4")
+    @AuxCadastroConsulta(listaConsulta=false, tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO)
     private int stEmbarque;
     
 //    @JoinColumn(name = "idpedido", referencedColumnName = "idpedido")
     @JoinColumn(name = "idPedido")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @TipoInputLookup(campoDisplay="sdcPedido")
     private Pedido pedido;
     
 //    @JoinColumn(name = "idcontainer", referencedColumnName = "idcontainer")
     @JoinColumn(name = "idContainer")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @TipoInputLookup(campoDisplay="ntonelagem")
+    @AuxCadastroConsulta(pai=true,requerido=true)
     private Container container;
 
     public ContainerPedido() {
     }
 
-    public ContainerPedido(Long idContainerPedido) {
+    public ContainerPedido(long idContainerPedido) {
         this.idContainerPedido = idContainerPedido;
     }
 
-    public ContainerPedido(Long idContainerPedido, int stEmbarque) {
+    public ContainerPedido(long idContainerPedido, int stEmbarque) {
         this.idContainerPedido = idContainerPedido;
         this.stEmbarque = stEmbarque;
     }
 
-    public Long getIdContainerPedido() {
+    public long getIdContainerPedido() {
         return idContainerPedido;
     }
 
-    public void setIdContainerPedido(Long idContainerPedido) {
+    public void setIdContainerPedido(long idContainerPedido) {
         this.idContainerPedido = idContainerPedido;
     }
 
@@ -96,27 +105,6 @@ public class ContainerPedido extends ComunEntidades implements Serializable {
 
     public void setContainer(Container container) {
         this.container = container;
-    }
-    
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idContainerPedido != null ? idContainerPedido.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ContainerPedido)) {
-            return false;
-        }
-        ContainerPedido other = (ContainerPedido) object;
-        if ((this.idContainerPedido == null && other.idContainerPedido != null) || (this.idContainerPedido != null && !this.idContainerPedido.equals(other.idContainerPedido))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

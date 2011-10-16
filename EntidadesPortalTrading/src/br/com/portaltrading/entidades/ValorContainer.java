@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -15,8 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,11 +39,13 @@ public class ValorContainer extends ComunEntidades implements Serializable {
     @Basic(optional = false)
     @Column(unique=true, nullable=false, precision=22)
 //    @Column(name = "idValorContainer")
-    private Long idValorContainer;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idValorContainer;
     
     @Basic(optional = false)
 //    @Column(name = "vlcontainer")
     @Column()
+    @AuxCadastroConsulta(requerido=true)
     private double vlContainer;
     
 //    @Column(name = "ddtinativo")
@@ -60,20 +61,20 @@ public class ValorContainer extends ComunEntidades implements Serializable {
     public ValorContainer() {
     }
 
-    public ValorContainer(Long idValorContainer) {
+    public ValorContainer(long idValorContainer) {
         this.idValorContainer = idValorContainer;
     }
 
-    public ValorContainer(Long idValorContainer, double vlContainer) {
+    public ValorContainer(long idValorContainer, double vlContainer) {
         this.idValorContainer = idValorContainer;
         this.vlContainer = vlContainer;
     }
 
-    public Long getIdValorContainer() {
+    public long getIdValorContainer() {
         return idValorContainer;
     }
 
-    public void setIdValorContainer(Long idValorContainer) {
+    public void setIdValorContainer(long idValorContainer) {
         this.idValorContainer = idValorContainer;
     }
 
@@ -99,26 +100,6 @@ public class ValorContainer extends ComunEntidades implements Serializable {
 
     public void setContainer(Container container) {
         this.container = container;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idValorContainer != null ? idValorContainer.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ValorContainer)) {
-            return false;
-        }
-        ValorContainer other = (ValorContainer) object;
-        if ((this.idValorContainer == null && other.idValorContainer != null) || (this.idValorContainer != null && !this.idValorContainer.equals(other.idValorContainer))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

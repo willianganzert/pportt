@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,8 +16,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -42,7 +41,8 @@ public class Usuario extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_USUARIO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idUsuario")
-    private Long idUsuario;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idUsuario;
     
     @Basic(optional = false)
 //    @Column(name = "ddtcriacao")
@@ -53,6 +53,7 @@ public class Usuario extends ComunEntidades implements Serializable {
     @Basic(optional = false)
 //    @Column(name = "sdcmail")
     @Column()
+    @AuxCadastroConsulta(requerido=true,length=60)
     private String sdcMail;
     
     @Basic(optional = false)
@@ -68,6 +69,7 @@ public class Usuario extends ComunEntidades implements Serializable {
 //    @Column(name = "dtinativo")
     @Column()
     @Temporal(TemporalType.DATE)
+    @AuxCadastroConsulta(listaConsulta=false,tipoDado= AuxCadastroConsulta.TIPO_DADO.DATA,requerido=true)
     private Date dtInativo;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.EAGER)
@@ -79,22 +81,22 @@ public class Usuario extends ComunEntidades implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario) {
+    public Usuario(long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Long idUsuario, Date ddtCriacao, String sdcMail, String sdcSenha) {
+    public Usuario(long idUsuario, Date ddtCriacao, String sdcMail, String sdcSenha) {
         this.idUsuario = idUsuario;
         this.ddtCriacao = ddtCriacao;
         this.sdcMail = sdcMail;
         this.sdcSenha = sdcSenha;
     }
 
-    public Long getIdUsuario() {
+    public long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Long idUsuario) {
+    public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -156,26 +158,6 @@ public class Usuario extends ComunEntidades implements Serializable {
 
     public void setCliente(List<Cliente> cliente) {
         this.cliente = cliente;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
-            return false;
-        }
-        Usuario other = (Usuario) object;
-        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

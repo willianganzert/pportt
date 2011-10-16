@@ -5,6 +5,7 @@
 package br.com.portaltrading.entidades;
 
 import br.com.portaltrading.annotations.AuxCadastroConsulta;
+import br.com.portaltrading.annotations.TipoInputCombo;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,8 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -56,6 +55,7 @@ public class Permissao extends ComunEntidades implements Serializable {
 //    @JoinColumn(name = "idcargo", referencedColumnName = "idcargo")
     @JoinColumn(name = "idCargo")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @TipoInputCombo(campoDisplay="sdcCargo")
     @AuxCadastroConsulta(requerido=true,pai=true,listaCadastro=false,listaConsulta=false,tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO)
     private Cargo cargo;
 

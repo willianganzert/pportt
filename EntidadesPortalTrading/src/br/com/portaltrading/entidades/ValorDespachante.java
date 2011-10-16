@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -15,8 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,11 +39,13 @@ public class ValorDespachante extends ComunEntidades implements Serializable {
     @Basic(optional = false)
     @Column(unique=true, nullable=false, precision=22)
 //    @Column(name = "idvalordespachante")
-    private Long idValorDespachante;
+    @AuxCadastroConsulta(listaConsulta=false)
+    private long idValorDespachante;
     
     @Basic(optional = false)
 //    @Column(name = "vldespachante")
     @Column()
+    @AuxCadastroConsulta(requerido=true)
     private double vlDespachante;
     
 //    @Column(name = "ddtinativo")
@@ -60,20 +61,20 @@ public class ValorDespachante extends ComunEntidades implements Serializable {
     public ValorDespachante() {
     }
 
-    public ValorDespachante(Long idValorDespachante) {
+    public ValorDespachante(long idValorDespachante) {
         this.idValorDespachante = idValorDespachante;
     }
 
-    public ValorDespachante(Long idValorDespachante, double vlDespachante) {
+    public ValorDespachante(long idValorDespachante, double vlDespachante) {
         this.idValorDespachante = idValorDespachante;
         this.vlDespachante = vlDespachante;
     }
 
-    public Long getIdValorDespachante() {
+    public long getIdValorDespachante() {
         return idValorDespachante;
     }
 
-    public void setIdValorDespachante(Long idValorDespachante) {
+    public void setIdValorDespachante(long idValorDespachante) {
         this.idValorDespachante = idValorDespachante;
     }
 
@@ -100,27 +101,6 @@ public class ValorDespachante extends ComunEntidades implements Serializable {
     public void setDespachante(Despachante despachante) {
         this.despachante = despachante;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idValorDespachante != null ? idValorDespachante.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ValorDespachante)) {
-            return false;
-        }
-        ValorDespachante other = (ValorDespachante) object;
-        if ((this.idValorDespachante == null && other.idValorDespachante != null) || (this.idValorDespachante != null && !this.idValorDespachante.equals(other.idValorDespachante))) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public String toString() {
         return "br.com.portaltrading.entidades.Valordespachante[ idValorDespachante=" + idValorDespachante + " ]";

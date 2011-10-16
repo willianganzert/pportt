@@ -4,6 +4,7 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -44,50 +45,60 @@ public class Cliente extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_CLIENTE_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idCliente")
-    private Long idCliente;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idCliente;
     
     @Basic(optional = false)
 //    @Column(name = "snmCliente")
     @Column(name = "snmCliente")
+    @AuxCadastroConsulta(length=250,requerido=true)
     private String snmCliente;
     
     @Basic(optional = false)
 //    @Column(name = "ddtNascimento")
     @Column()
     @Temporal(TemporalType.DATE)
+    @AuxCadastroConsulta(listaConsulta=false,tipoDado= AuxCadastroConsulta.TIPO_DADO.DATA,requerido=true)
     private Date ddtNascimento;
     
 //    @Column(name = "sdcfone")
     @Column()
+    @AuxCadastroConsulta(listaConsulta=false,length=15)
     private String sdcFone;
     
     @Basic(optional = false)
 //    @Column(name = "sdcEmailContato")
     @Column()
+    @AuxCadastroConsulta(listaConsulta=false,requerido=true,length=60)
     private String sdcEmailContato;
     
     @Basic(optional = false)
 //    @Column(name = "sdcEndereco")
     @Column()
+    @AuxCadastroConsulta(listaConsulta=false,requerido=true,length=250)
     private String sdcEndereco;
     
     @Basic(optional = false)
 //    @Column(name = "snmCidade")
     @Column()
+    @AuxCadastroConsulta(requerido=true,length=50)
     private String snmCidade;
     
     @Basic(optional = false)
 //    @Column(name = "snmUf")
     @Column()
+    @AuxCadastroConsulta(listaConsulta=false,requerido=true,length=50)
     private String snmUf;
     
     @Basic(optional = false)
 //    @Column(name = "snmPais")
     @Column()
+    @AuxCadastroConsulta(requerido=true,length=50)
     private String snmPais;
     
 //    @Column(name = "nidstatus")
     @Column()
+    @AuxCadastroConsulta(listaConsulta=false)
     private Integer nidStatus;
     
 //    @Column(name = "ddtcadastro")
@@ -109,11 +120,11 @@ public class Cliente extends ComunEntidades implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Long idCliente) {
+    public Cliente(long idCliente) {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Long idCliente, String snmCliente, Date ddtNascimento, String sdcEmailContato, String sdcEndereco, String snmCidade, String snmUf, String snmPais) {
+    public Cliente(long idCliente, String snmCliente, Date ddtNascimento, String sdcEmailContato, String sdcEndereco, String snmCidade, String snmUf, String snmPais) {
         this.idCliente = idCliente;
         this.snmCliente = snmCliente;
         this.ddtNascimento = ddtNascimento;
@@ -140,11 +151,11 @@ public class Cliente extends ComunEntidades implements Serializable {
         this.ddtNascimento = ddtNascimento;
     }
 
-    public Long getIdCliente() {
+    public long getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Long idCliente) {
+    public void setIdCliente(long idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -237,29 +248,6 @@ public class Cliente extends ComunEntidades implements Serializable {
 
     public void setDocumentos(List<Documento> documentos) {
         this.documentos = documentos;
-    }
-
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idCliente != null ? idCliente.hashCode() : 0);
-        return hash;
-    }
-
-    
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
-            return false;
-        }
-        Cliente other = (Cliente) object;
-        if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

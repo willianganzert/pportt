@@ -4,6 +4,8 @@
  */
 package br.com.portaltrading.entidades;
 
+import br.com.portaltrading.annotations.AuxCadastroConsulta;
+import br.com.portaltrading.annotations.TipoInputCombo;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -37,11 +39,14 @@ public class ProdutoValidado extends ComunEntidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_PRODUTOVALIDADO_GENERATOR")
     @Column(unique = true, nullable = false, precision = 22)
 //    @Column(name = "idProdutoValidado")
-    private Long idProdutoValidado;
+    @AuxCadastroConsulta(listaCadastro=false)
+    private long idProdutoValidado;
     
     @Basic(optional = false)
 //    @Column(name = "stProduto")
     @Column()
+    @TipoInputCombo(valuesTpCombo="1,2")
+    @AuxCadastroConsulta(listaConsulta=false, tipoCampo= AuxCadastroConsulta.TIPO_CAMPO.COMBO)
     private int stProduto;
 //    @Column(name = "spaproduto")
     @Column()
@@ -60,20 +65,20 @@ public class ProdutoValidado extends ComunEntidades implements Serializable {
     public ProdutoValidado() {
     }
 
-    public ProdutoValidado(Long idProdutoValidado) {
+    public ProdutoValidado(long idProdutoValidado) {
         this.idProdutoValidado = idProdutoValidado;
     }
 
-    public ProdutoValidado(Long idProdutoValidado, int stProduto) {
+    public ProdutoValidado(long idProdutoValidado, int stProduto) {
         this.idProdutoValidado = idProdutoValidado;
         this.stProduto = stProduto;
     }
 
-    public Long getIdProdutoValidado() {
+    public long getIdProdutoValidado() {
         return idProdutoValidado;
     }
 
-    public void setIdProdutoValidado(Long idProdutoValidado) {
+    public void setIdProdutoValidado(long idProdutoValidado) {
         this.idProdutoValidado = idProdutoValidado;
     }
 
@@ -107,26 +112,6 @@ public class ProdutoValidado extends ComunEntidades implements Serializable {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idProdutoValidado != null ? idProdutoValidado.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProdutoValidado)) {
-            return false;
-        }
-        ProdutoValidado other = (ProdutoValidado) object;
-        if ((this.idProdutoValidado == null && other.idProdutoValidado != null) || (this.idProdutoValidado != null && !this.idProdutoValidado.equals(other.idProdutoValidado))) {
-            return false;
-        }
-        return true;
     }
 
     @Override
