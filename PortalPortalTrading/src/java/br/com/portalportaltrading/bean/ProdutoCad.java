@@ -64,6 +64,7 @@ public class ProdutoCad extends ComunTelas implements ImplementsCad{
     
     public void rowSelectionListener(RowSelectorEvent event) {
         this.tabelaConfigPricipalCad.setSelected(((Produto) this.tabelaConfigPricipalCad.getListaRegistros().get(event.getRow())).clone());
+        this.idFornecedorSelecionado = ((Produto) this.tabelaConfigPricipalCad.getSelected()).getFornecedor().getIdFornecedor();
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
         this.tabelaConfigPricipalCad.setNovoReg(false);
     }
