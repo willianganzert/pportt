@@ -45,12 +45,6 @@ public class Despachante extends ComunEntidades implements Serializable {
     @AuxCadastroConsulta(listaCadastro=false)
     private long idDespachante;
     
-    @Basic(optional = false)
-//    @Column(name = "snmRepDespachante")
-    @Column()
-    @AuxCadastroConsulta(length=50)
-    private String snmRepDespachante;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "despachante", fetch = FetchType.EAGER)
     private List<Pedido> pedidos;
     
@@ -69,25 +63,12 @@ public class Despachante extends ComunEntidades implements Serializable {
         this.idDespachante = idDespachante;
     }
 
-    public Despachante(long idDespachante, String snmRepDespachante) {
-        this.idDespachante = idDespachante;
-        this.snmRepDespachante = snmRepDespachante;
-    }
-
     public long getIdDespachante() {
         return idDespachante;
     }
 
     public void setIdDespachante(long idDespachante) {
         this.idDespachante = idDespachante;
-    }
-
-    public String getSnmRepDespachante() {
-        return snmRepDespachante;
-    }
-
-    public void setSnmRepDespachante(String snmRepDespachante) {
-        this.snmRepDespachante = snmRepDespachante;
     }
 
     public Empresa getEmpresa() {
