@@ -36,20 +36,16 @@
                             <ice:commandButton actionListener="#{produtoCad.cancelar}" styleClass="buttonsCad buttonCancelar" title="#{mLbl['botao.cancelar']}"/>
                         </ice:panelGrid>
                         <ice:panelGrid columns="2">
-                            <ice:outputText value="#{mEnt['tituloTabela.Produto']}"/>
-                            <ice:selectOneMenu valueChangeListener="#{caminhaoCad.changeRepRodoviario(event)}" value="#{caminhaoCad.idRepRodoviarioSelected}">
-                                <f:selectItems value="#{caminhaoCad.repItemsRodoviarios}"/>
+                            <ice:outputText value="#{mEnt['tituloTabela.Fornecedor']}"/>
+                            <ice:selectOneMenu valueChangeListener="#{produtoCad.changeFornecedor}" value="#{produtoCad.idFornecedorSelecionado}">
+                                <f:selectItems value="#{produtoCad.selectItemsFornecedor}"/>
                             </ice:selectOneMenu>
-                            <ice:outputText value="#{mEnt['label.Produto.idProduto']}"/>
-                            <ice:inputText value="#{produtoCad.tabelaConfigPricipalCad.selected.idProduto}" maxlength="20" style="width: 150px;"/>
-                            <ice:outputText value="#{mEnt['label.Produto.snmProduto']}"/>
-                            <ice:inputText value="#{produtoCad.tabelaConfigPricipalCad.selected.snmProduto}" maxlength="4" style="width: 40px;"/>
-                            <ice:outputText value="#{mEnt['label.Produto.snmMarca']}"/>
-                            <ice:inputText value="#{produtoCad.tabelaConfigPricipalCad.selected.snmMarca}" maxlength="10" style="width: 100px;"/>
-                            <ice:outputText value="#{mEnt['label.Produto.sdcQtd']}"/>
-                            <ice:inputText value="#{produtoCad.tabelaConfigPricipalCad.selected.sdcQtd}" maxlength="50" style="width: 250px;"/>
-                            <ice:outputText value="#{mEnt['label.Produto.sdcValor']}"/>
-                            <ice:inputText value="#{produtoCad.tabelaConfigPricipalCad.selected.sdcValor}" maxlength="50" style="width: 250px;"/>
+                            <ice:outputText value="#{mEnt['label.Produto.short.sdcCodBarra']}"/>
+                            <ice:inputText value="#{produtoCad.tabelaConfigPricipalCad.selected.sdcCodBarra}" maxlength="20" style="width: 150px;"/>
+                            <ice:outputText value="#{mEnt['label.Produto.short.snmProduto']}"/>
+                            <ice:inputText value="#{produtoCad.tabelaConfigPricipalCad.selected.snmProduto}" maxlength="250" style="width: 250px;"/>
+                            <ice:outputText value="#{mEnt['label.Produto.short.sdcMarca']}"/>
+                            <ice:inputText value="#{produtoCad.tabelaConfigPricipalCad.selected.sdcMarca}" maxlength="150" style="width: 200px;"/>
                         </ice:panelGrid>                        
                     </ice:panelGrid>
                 </f:facet>
