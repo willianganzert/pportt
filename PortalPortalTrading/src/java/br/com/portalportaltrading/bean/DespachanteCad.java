@@ -75,7 +75,7 @@ public class DespachanteCad extends ComunTelas implements ImplementsCad{
         if(this.validaDadosClasse(this.tabelaConfigPricipalCad.getSelected()) &&
                 this.validaDadosClasse(((Despachante)this.tabelaConfigPricipalCad.getSelected()).getEmpresa()))
         {
-            ((Despachante)this.tabelaConfigPricipalCad.getSelected()).getEmpresa().setNidTipo(2);//TipoFornecedor
+            ((Despachante)this.tabelaConfigPricipalCad.getSelected()).getEmpresa().setNidTipo(4);//TipoFornecedor
 //            ((Despachante)this.tabelaConfigPricipalCad.getSelected()).setNidAtivo(1);
             JpaAllEntities.insertOrUpdate(((Despachante)this.tabelaConfigPricipalCad.getSelected()).getEmpresa(),
                     (Despachante)this.tabelaConfigPricipalCad.getSelected());
