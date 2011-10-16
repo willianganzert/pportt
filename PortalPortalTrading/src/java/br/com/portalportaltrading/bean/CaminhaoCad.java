@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
@@ -36,7 +35,7 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
     private long idRepRodoviarioSelected = 0;
     /** Creates a new instance of FornecedorCad */
     public CaminhaoCad() {
-        this.sdcTituloTelaCad = UtlMsg.msg("tituloTabela.Caminhao");
+        this.sdcTituloTelaCad       = UtlMsg.msg("tituloTabela.Caminhao");
         this.repRodoviarios         = JpaAllEntities.listAll(RepRodoviario.class);
         this.repItemsRodoviarios    = this.convertItensRepresentante(this.repRodoviarios);
         this.tabelaConfigPricipalCad = new TabelaConfig(classePrinciapalCad);
