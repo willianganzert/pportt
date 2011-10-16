@@ -62,6 +62,7 @@ public class CaminhaoCad extends ComunTelas implements ImplementsCad{
     
     public void rowSelectionListener(RowSelectorEvent event) {
         this.tabelaConfigPricipalCad.setSelected(((Caminhao) this.tabelaConfigPricipalCad.getListaRegistros().get(event.getRow())).clone());
+        this.idRepRodoviarioSelected = ((Caminhao) this.tabelaConfigPricipalCad.getSelected()).getRepRodoviario().getIdRepRodoviario();
         this.tabelaConfigPricipalCad.setVisablePopupCad(true);
         this.tabelaConfigPricipalCad.setNovoReg(false);
     }
