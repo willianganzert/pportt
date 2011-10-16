@@ -16,5 +16,7 @@ import java.lang.annotation.Target;
 @Target(value = {ElementType.METHOD, ElementType.FIELD})
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface TipoInputCombo {
-    String valuesTpCombo();
+    String valuesTpCombo() default "";
+    String campoIdentificador() default "Id";
+    String campoDisplay() default "mEnt";
 }

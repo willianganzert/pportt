@@ -17,7 +17,7 @@ import java.lang.annotation.Target;
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface AuxCadastroConsulta {
     public static enum TIPO_CAMPO{TEXT,AREA,COMBO,CHECK,RADIO};
-    public static enum TIPO_DADO{ALFA,NUMERICO,POSITIVO};
+    public static enum TIPO_DADO{ALFA,NUMERICO,POSITIVO,DATA};
     
     boolean listaCadastro() default true;
     boolean listaConsulta() default true;    
