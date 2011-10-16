@@ -5,20 +5,21 @@
                 xmlns:ice="http://www.icesoft.com/icefaces/component"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 
+        <!--#{mLbl['label.cadastroDe']}-->
         <ice:form id="formMenu" styleClass="formMenu fontePadrao">
             <ice:panelGroup style="width: 100%; height: 100%;">
                 <ice:panelGrid columns="1">
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.Fornecedor']}" action="FornecedorCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.RepRodoviario']}" action="RepRodoviarioCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.RepMaritimo']}" action="RepMaritimoCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.Despachante']}" action="DespachanteCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.Caminhao']}" action="CaminhaoCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.Produto']}" action="ProdutoCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.Manufaturado']}" action="ManufaturadoCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.Funcionario']}" action="FuncionarioCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.Cliente']}" action="ClienteCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.Cargo']}" action="CargoCad"/>
-                    <ice:commandButton styleClass="buttonMenu" value="#{mLbl['label.cadastroDe']} #{mEnt['tituloTabela.TipoDocumento']}" action="TipoDocumentoCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.Fornecedor']}" action="FornecedorCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.RepRodoviario']}" action="RepRodoviarioCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.RepMaritimo']}" action="RepMaritimoCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.Despachante']}" action="DespachanteCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.Caminhao']}" action="CaminhaoCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.Produto']}" action="ProdutoCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.Manufaturado']}" action="ManufaturadoCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.Funcionario']}" action="FuncionarioCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.Cliente']}" action="ClienteCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.Cargo']}" action="CargoCad"/>
+                    <ice:commandButton styleClass="buttonMenu" value="#{mEnt['tituloTabela.TipoDocumento']}" action="TipoDocumentoCad"/>
                 </ice:panelGrid>
             </ice:panelGroup>
         </ice:form>
