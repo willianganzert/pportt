@@ -54,7 +54,7 @@ public class UsuarioCad extends ComunTelas implements ImplementsCad{
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("EntidadesPortalTradingPU");
         UsuarioJpaController usuarioJpaController = new UsuarioJpaController(emf);
         usuario.setDdtCriacao(new Date());
-        if(usuario.getIdUsuario() != null)
+        if(usuario.getIdUsuario() != 0)
         {
             try {
             usuarioJpaController.edit(usuario);
