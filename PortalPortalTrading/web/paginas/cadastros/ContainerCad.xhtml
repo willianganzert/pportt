@@ -41,14 +41,14 @@
                             <ice:selectOneMenu valueChangeListener="#{containerCad.changeRepMaritimo}" partialSubmit="true" value="#{containerCad.idRepMaritimoSelected}">
                                 <f:selectItems value="#{containerCad.repItemsMaritimos}"/>
                             </ice:selectOneMenu>
-                            <ice:outputText value="#{mEnt['label.Container.nTonelagem']}"/>
-                            <ice:inputText value="#{containerCad.tabelaConfigPricipalCad.selected.nTonelagem}" maxlength="20" style="width: 150px;"/>
-                            <ice:outputText value="#{mEnt['label.Container.nComprimento']}"/>
-                            <ice:inputText value="#{containerCad.tabelaConfigPricipalCad.selected.nComprimento}" maxlength="4" style="width: 40px;"/>
-                            <ice:outputText value="#{mEnt['label.Container.nLargura']}"/>
-                            <ice:inputText value="#{containerCad.tabelaConfigPricipalCad.selected.nLargura}" maxlength="10" style="width: 100px;"/>
-                            <ice:outputText value="#{mEnt['label.Container.nAltura']}"/>
-                            <ice:inputText value="#{containerCad.tabelaConfigPricipalCad.selected.nAltura}" maxlength="50" style="width: 250px;"/>
+                            <ice:outputText value="#{mEnt['label.Container.ntonelagem']}"/>
+                            <ice:inputText value="#{containerCad.tabelaConfigPricipalCad.selected.ntonelagem}" maxlength="20" style="width: 50px;"/>
+                            <ice:outputText value="#{mEnt['label.Container.ncomprimento']}"/>
+                            <ice:inputText value="#{containerCad.tabelaConfigPricipalCad.selected.ncomprimento}" maxlength="4" style="width: 50px;"/>
+                            <ice:outputText value="#{mEnt['label.Container.nlargura']}"/>
+                            <ice:inputText value="#{containerCad.tabelaConfigPricipalCad.selected.nlargura}" maxlength="10" style="width: 50px;"/>
+                            <ice:outputText value="#{mEnt['label.Container.naltura']}"/>
+                            <ice:inputText value="#{containerCad.tabelaConfigPricipalCad.selected.naltura}" maxlength="50" style="width: 50px;"/>
                         </ice:panelGrid>                        
                     </ice:panelGrid>
                 </f:facet>

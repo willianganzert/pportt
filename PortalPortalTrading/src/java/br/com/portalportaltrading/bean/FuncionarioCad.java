@@ -25,7 +25,7 @@ import javax.faces.bean.ViewScoped;
 public class FuncionarioCad extends ComunTelas implements ImplementsCad{
     private final Class classePrinciapalCad  = Funcionario.class;
     private TabelaConfig tabelaConfigPricipalCad;
-    /** Creates a new instance of FornecedorCad */
+    /** Creates a new instance of FuncionarioCad */
     public FuncionarioCad() {
         this.sdcTituloTelaCad = UtlMsg.msg("tituloTabela.Funcionario");
         

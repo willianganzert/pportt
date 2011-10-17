@@ -33,7 +33,7 @@ public class ContainerCad extends ComunTelas implements ImplementsCad{
     private List<SelectItem> repItemsMaritimos;
     private List<RepMaritimo> repMaritimos;
     private long idRepMaritimoSelected = 0;
-    /** Creates a new instance of FornecedorCad */
+    /** Creates a new instance of ContainerCad */
     public ContainerCad() {
         this.sdcTituloTelaCad       = UtlMsg.msg("tituloTabela.Container");
         this.repMaritimos           = JpaAllEntities.listAll(RepMaritimo.class);
