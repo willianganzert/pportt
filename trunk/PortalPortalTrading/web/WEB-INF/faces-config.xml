@@ -77,6 +77,14 @@
             <from-outcome>TipoDocumentoCad</from-outcome>
             <to-view-id>/paginas/cadastros/TipoDocumentoCad.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>ContainerCad</from-outcome>
+            <to-view-id>/paginas/cadastros/ContainerCad.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PedidoCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PedidoCad.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
 
