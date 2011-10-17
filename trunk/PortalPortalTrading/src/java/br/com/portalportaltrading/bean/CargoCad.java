@@ -25,11 +25,11 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class CargoFuncionarioCad extends ComunTelas implements ImplementsCad{
+public class CargoCad extends ComunTelas implements ImplementsCad{
     private final Class classePrinciapalCad  = Cargo.class;
     private TabelaConfig tabelaConfigPricipalCad;
-    /** Creates a new instance of FornecedorCad */
-    public CargoFuncionarioCad() {
+    /** Creates a new instance of CargoCad */
+    public CargoCad() {
         this.sdcTituloTelaCad = UtlMsg.msg("tituloTabela.Cargo");
         
         this.tabelaConfigPricipalCad = new TabelaConfig(classePrinciapalCad);

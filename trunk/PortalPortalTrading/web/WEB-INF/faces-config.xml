@@ -85,6 +85,10 @@
             <from-outcome>PedidoCad</from-outcome>
             <to-view-id>/paginas/cadastros/PedidoCad.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>PermissaoCad</from-outcome>
+            <to-view-id>/paginas/cadastros/PermissaoCad.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
 
